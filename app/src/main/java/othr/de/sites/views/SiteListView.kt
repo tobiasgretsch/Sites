@@ -1,7 +1,8 @@
-package othr.de.sites
+package othr.de.sites.views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import othr.de.sites.R
 
 class SiteListView : AppCompatActivity() {
 
