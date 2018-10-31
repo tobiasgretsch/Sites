@@ -7,7 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
-import org.wit.placemark.R
+import org.jetbrains.anko.startActivityForResult
+import othr.de.sites.R
 import java.io.IOException
 
 fun showImagePicker(parent: Activity, id: Int) {
@@ -15,7 +16,7 @@ fun showImagePicker(parent: Activity, id: Int) {
   intent.type = "image/*"
   intent.action = Intent.ACTION_OPEN_DOCUMENT
   intent.addCategory(Intent.CATEGORY_OPENABLE)
-  val chooser = Intent.createChooser(intent, R.string.select_placemark_image.toString())
+  val chooser = Intent.createChooser(intent, "in @Strings festlegen!!!")
   parent.startActivityForResult(chooser, id)
 }
 

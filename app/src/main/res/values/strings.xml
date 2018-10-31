@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Sites</string>
     <string name="title_activity_site_view">SiteView</string>
+    <string name="menu_addSite">Add</string>
+    <string name="menu_deleteSite">Delete</string>
+    <string name="menu_cancelSite">Cancel</string>
 </resources>
