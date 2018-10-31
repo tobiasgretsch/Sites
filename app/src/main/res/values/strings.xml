@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sites</string>
+    <string name="title_activity_site_view">SiteView</string>
 </resources>
