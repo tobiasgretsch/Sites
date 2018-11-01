@@ -1,18 +1,16 @@
-package othr.de.sites.views
+package othr.de.sites.views.site
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import othr.de.sites.R
 
 import kotlinx.android.synthetic.main.activity_site_view.*
-import org.jetbrains.anko.toast
 
 class SiteView : AppCompatActivity() {
 
-  lateinit var presenter:SiteViewPresenter
+  lateinit var presenter: SiteViewPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
