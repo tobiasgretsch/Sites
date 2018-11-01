@@ -27,7 +27,7 @@
   />
   <Button
       android:text="@string/site_add_Image"
-      android:layout_width="160"
+      android:layout_width="160sp"
       android:layout_height="wrap_content"
       android:id="@+id/addImage"
       android:backgroundTint="@color/colorPrimary"
@@ -37,7 +37,7 @@
       android:layout_marginStart="8dp"/>
   <Button
       android:text="@string/site_set_Location"
-      android:layout_width="160"
+      android:layout_width="160sp"
       android:layout_height="wrap_content"
       android:id="@+id/setLocation"
       android:backgroundTint="@color/colorPrimary"
