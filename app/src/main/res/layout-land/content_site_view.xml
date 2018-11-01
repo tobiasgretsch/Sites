@@ -13,47 +13,47 @@
             android:text="Visited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/editText3"
-            app:layout_constraintStart_toStartOf="@+id/editText3"/>
+            android:id="@+id/siteCheckBox"
+            app:layout_constraintTop_toBottomOf="@+id/siteDescription"
+            app:layout_constraintStart_toStartOf="@+id/siteDescription"/>
     <TextView
             android:text="First Visited : "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/editText"
-            app:layout_constraintBottom_toBottomOf="@+id/editText" android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/editText3" android:layout_marginStart="8dp"
-            android:id="@+id/textView6" app:layout_constraintEnd_toStartOf="@+id/editText"
+            app:layout_constraintTop_toTopOf="@+id/siteDateVisited"
+            app:layout_constraintBottom_toBottomOf="@+id/siteDateVisited" android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/siteDescription" android:layout_marginStart="8dp"
+            android:id="@+id/siteVisited" app:layout_constraintEnd_toStartOf="@+id/siteDateVisited"
             android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.0"/>
     <Button
             android:text="Add Image"
             android:layout_width="160"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
+            android:id="@+id/addImage"
             android:backgroundTint="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="@+id/editText3"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/siteDescription"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/siteVisited"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"
             android:layout_marginStart="8dp"/>
     <Button
             android:text="Set Location"
             android:layout_width="160"
             android:layout_height="wrap_content"
-            android:id="@+id/button2"
+            android:id="@+id/setLocation"
             android:backgroundTint="@color/colorPrimary"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/editText3"/>
+            app:layout_constraintTop_toBottomOf="@+id/addImage"
+            app:layout_constraintStart_toStartOf="@+id/siteDescription"/>
     <EditText
             android:layout_width="136dp"
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/siteDateVisited"
             android:hint="not visited yet"
             android:textSize="14sp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/checkBox"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/siteCheckBox"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"/>
     <EditText
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/siteTitle"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintLeft_toLeftOf="parent"
@@ -72,10 +72,10 @@
             android:inputType="textPersonName"
             android:text="Description"
             android:ems="10"
-            android:id="@+id/editText3"
+            android:id="@+id/siteDescription"
             android:textSize="14sp" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintTop_toBottomOf="@+id/siteTitle"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"/>
     <ImageView
             android:layout_width="281dp"
