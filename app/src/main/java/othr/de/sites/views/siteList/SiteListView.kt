@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_site_list_view.*
 import othr.de.sites.R
 import othr.de.sites.models.SiteModel
 
-class SiteListView : AppCompatActivity() {
+class SiteListView : AppCompatActivity(), SiteListener {
 
   lateinit var presenter: SiteListPresenter
 
@@ -20,7 +20,15 @@ class SiteListView : AppCompatActivity() {
       presenter = SiteListPresenter(this)
 
 
+      val layoutManager = LinearLayoutManager(this)
+      recyclerView.layoutManager = layoutManager
+      recyclerView.adapter = SiteAdapter(presenter.getSites(), this)
+      recyclerView?.adapter?.notifyDataSetChanged()
     }
+
+  override fun onSiteClick(site: SiteModel) {
+    presenter.doEditSite()
+  }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_list, menu)
