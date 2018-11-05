@@ -12,8 +12,8 @@ data class SiteModel(
     var images: List<String> = mutableListOf(""),
     var longtitue: Double = 0.0,
     var latitute: Double = 0.0,
-    var visited: Boolean = false
-    //, var date_visited: Date
+    var visited: Boolean = false,
+    var date_visited: String = ""
 ) : Parcelable
 
 data class User(
