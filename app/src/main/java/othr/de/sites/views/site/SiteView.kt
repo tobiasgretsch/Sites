@@ -23,7 +23,7 @@ class SiteView : AppCompatActivity() {
 
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_site,menu)
+    menuInflater.inflate(R.menu.menu_site, menu)
     return super.onCreateOptionsMenu(menu)
   }
 

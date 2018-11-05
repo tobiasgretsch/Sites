@@ -13,31 +13,31 @@ class SiteListView : AppCompatActivity(), SiteListener {
 
   lateinit var presenter: SiteListPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-      super.onCreate(savedInstanceState)
-      setContentView(R.layout.activity_site_list_view)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_site_list_view)
 
-      presenter = SiteListPresenter(this)
+    presenter = SiteListPresenter(this)
 
 
-      val layoutManager = LinearLayoutManager(this)
-      recyclerView.layoutManager = layoutManager
-      recyclerView.adapter = SiteAdapter(presenter.getSites(), this)
-      recyclerView?.adapter?.notifyDataSetChanged()
-    }
+    val layoutManager = LinearLayoutManager(this)
+    recyclerView.layoutManager = layoutManager
+    recyclerView.adapter = SiteAdapter(presenter.getSites(), this)
+    recyclerView?.adapter?.notifyDataSetChanged()
+  }
 
   override fun onSiteClick(site: SiteModel) {
     presenter.doEditSite()
   }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_list, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_list, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
 
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when(item?.itemId) {
+    when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
     }
     return super.onOptionsItemSelected(item)

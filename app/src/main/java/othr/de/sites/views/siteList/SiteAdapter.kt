@@ -11,11 +11,13 @@ interface SiteListener {
   fun onSiteClick(site: SiteModel)
 }
 
-class SiteAdapter constructor(private var sites: List<SiteModel>,
-                              private var listener: SiteListener) : RecyclerView.Adapter<SiteAdapter.MainHolder>() {
+class SiteAdapter constructor(
+  private var sites: List<SiteModel>,
+  private var listener: SiteListener
+) : RecyclerView.Adapter<SiteAdapter.MainHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-    return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.content_site_view,parent, false))
+    return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.content_site_view, parent, false))
   }
 
   override fun getItemCount(): Int {
@@ -24,12 +26,12 @@ class SiteAdapter constructor(private var sites: List<SiteModel>,
 
   override fun onBindViewHolder(holder: MainHolder, position: Int) {
     val site = sites[holder.adapterPosition]
-    holder.bind(site,listener)
+    holder.bind(site, listener)
   }
 
   class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind (site: SiteModel, listener: SiteListener) {
+    fun bind(site: SiteModel, listener: SiteListener) {
       //hier die parameter einstellen!
     }
   }

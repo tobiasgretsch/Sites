@@ -2,7 +2,7 @@ package othr.de.sites.views.site
 
 import othr.de.sites.main.MainApp
 
-class SiteViewPresenter(val view: SiteView){
+class SiteViewPresenter(val view: SiteView) {
 
   var app: MainApp
 
