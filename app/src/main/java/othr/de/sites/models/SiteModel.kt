@@ -6,6 +6,7 @@ import java.util.*
 
 @Parcelize
 data class SiteModel(
+  
     var id: Long = 0,
     var name: String = "",
     var description: String = "",
@@ -14,10 +15,11 @@ data class SiteModel(
     var latitute: Double = 0.0,
     var visited: Boolean = false,
     var date_visited: String = ""
+
 ) : Parcelable
 
 data class User(
-    var email: String = "",
-    var password: String = ""
-    //speichern der Userdaten über die besuchten Sites
+  var email: String = "",
+  var password: String = ""
+  //speichern der Userdaten über die besuchten Sites
 )

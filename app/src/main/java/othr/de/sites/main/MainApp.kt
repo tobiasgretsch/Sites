@@ -8,12 +8,12 @@ import othr.de.sites.models.SiteStore
 
 class MainApp : Application(), AnkoLogger {
 
-    lateinit var sites : SiteStore
+  lateinit var sites: SiteStore
 
-    override fun onCreate() {
-        super.onCreate()
-        sites = SiteJSONStore(applicationContext)
-        info("Site Application started")
-    }
+  override fun onCreate() {
+    super.onCreate()
+    sites = SiteJSONStore(applicationContext)
+    info("Site Application started")
+  }
 }
 

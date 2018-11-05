@@ -6,7 +6,8 @@ import org.jetbrains.anko.AnkoLogger
 import othr.de.sites.main.MainApp
 import othr.de.sites.models.SiteModel
 
-class SiteViewPresenter(val view: SiteView) : AnkoLogger {
+
+class SiteViewPresenter(val view: SiteView) {
 
   var app: MainApp
   var site = SiteModel()

@@ -1,16 +1,17 @@
 <resources>
-    <string name="app_name">Sites</string>
-    <string name="title_activity_site_view">SiteView</string>
-    <string name="menu_addSite">Add</string>
-    <string name="menu_deleteSite">Delete</string>
-    <string name="menu_cancelSite">Cancel</string>
-    <string name="site_set_Location">Set Location</string>
-    <string name="site_add_Image">Add Image</string>
-    <string name="site_first_visited">First Visited :</string>
-    <string name="site_checkbox_visited">Visited</string>
-    <string name="site_hint_date">Not visited yet</string>
-    <string name="site_name">Name</string>
-    <string name="site_description">Description</string>
-    <string name="site_image">Site Image</string>
-    <string name="add_edit_site">Add Site</string>
+  <string name="app_name">Sites</string>
+  <string name="title_activity_site_view">SiteView</string>
+  <string name="menu_addSite">Add</string>
+  <string name="menu_deleteSite">Delete</string>
+  <string name="menu_cancelSite">Cancel</string>
+  <string name="menu_logout">Logout</string>
+  <string name="site_set_Location">Set Location</string>
+  <string name="site_add_Image">Add Image</string>
+  <string name="site_first_visited">First Visited :</string>
+  <string name="site_checkbox_visited">Visited</string>
+  <string name="site_hint_date">Not visited yet</string>
+  <string name="site_name">Name</string>
+  <string name="site_description">Description</string>
+  <string name="site_image">Site Image</string>
+  <string name="add_edit_site">Add Site</string>
 </resources>
