@@ -35,6 +35,7 @@ class SiteViewPresenter(val view: SiteView) {
   fun doAddorEditSite(name: String, description: String) {
     site.name = name
     site.description = description
+    site.visited = view.siteCheckBox.isChecked
     if (edit) {
       app.sites.update(site)
     } else {
