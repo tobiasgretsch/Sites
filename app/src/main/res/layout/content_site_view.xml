@@ -7,6 +7,6 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_site_view"
-        tools:context=".views.SiteView">
+        tools:context=".views.site.SiteView">
 
 </android.support.constraint.ConstraintLayout>

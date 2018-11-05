@@ -1,6 +1,5 @@
-package othr.de.sites.views
+package othr.de.sites.views.site
 
-import org.jetbrains.anko.AnkoLogger
 import othr.de.sites.main.MainApp
 
 class SiteViewPresenter(val view: SiteView){
