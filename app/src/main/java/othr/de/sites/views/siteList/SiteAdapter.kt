@@ -28,16 +28,17 @@ class SiteAdapter constructor(
 
   override fun onBindViewHolder(holder: MainHolder, position: Int) {
     val site = sites[holder.adapterPosition]
-    holder.bind(site)
+    holder.bind(site,listener)
   }
 
   class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(site: SiteModel) {
+    fun bind(site: SiteModel, listener: SiteListener) {
       itemView.siteListTitle.text = site.name
       itemView.siteLat.setText(site.latitute.toString())
       itemView.siteLng.setText(site.longtitue.toString())
       itemView.site_checkBox.setChecked(site.visited)
+      itemView.setOnClickListener {listener.onSiteClick(site)}
     }
   }
 }

@@ -1,5 +1,6 @@
 package othr.de.sites.views.siteList
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -27,7 +28,7 @@ class SiteListView : AppCompatActivity(), SiteListener {
   }
 
   override fun onSiteClick(site: SiteModel) {
-    presenter.doEditSite()
+    presenter.doEditSite(site)
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -39,7 +40,13 @@ class SiteListView : AppCompatActivity(), SiteListener {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
+      R.id.item_up -> {if (presenter.getSites().size > 0) recyclerView.smoothScrollToPosition(0)}
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    recyclerView.adapter?.notifyDataSetChanged()
+    super.onActivityResult(requestCode, resultCode, data)
   }
 }
