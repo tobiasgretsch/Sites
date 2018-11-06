@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_site.view.*
 import kotlinx.android.synthetic.main.content_site_view.view.*
+import org.wit.placemark.helpers.readImageFromPath
 import othr.de.sites.R
 import othr.de.sites.models.SiteModel
 
@@ -34,6 +35,7 @@ class SiteAdapter constructor(
   class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(site: SiteModel, listener: SiteListener) {
+      itemView.listIcon.setImageBitmap(readImageFromPath(itemView.context, site.images))
       itemView.siteListTitle.text = site.name
       itemView.siteLat.setText(site.latitute.toString())
       itemView.siteLng.setText(site.longtitue.toString())

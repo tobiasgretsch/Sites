@@ -7,7 +7,7 @@ import othr.de.sites.main.MainApp
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.site.SiteView
 
-class SiteListPresenter(val view: SiteListView) : AnkoLogger {
+class SiteListPresenter(val view: SiteListView){
 
   var app: MainApp
 
