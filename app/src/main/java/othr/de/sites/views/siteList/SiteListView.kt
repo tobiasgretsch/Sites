@@ -20,15 +20,10 @@ class SiteListView : AppCompatActivity(), SiteListener {
 
     presenter = SiteListPresenter(this)
 
-
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = SiteAdapter(presenter.getSites(), this)
     recyclerView?.adapter?.notifyDataSetChanged()
-  }
-
-  override fun onSiteClick(site: SiteModel) {
-    presenter.doEditSite(site)
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -36,13 +31,16 @@ class SiteListView : AppCompatActivity(), SiteListener {
     return super.onCreateOptionsMenu(menu)
   }
 
-
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
       R.id.item_up -> {if (presenter.getSites().size > 0) recyclerView.smoothScrollToPosition(0)}
     }
     return super.onOptionsItemSelected(item)
+  }
+
+  override fun onSiteClick(site: SiteModel) {
+    presenter.doEditSite(site)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
