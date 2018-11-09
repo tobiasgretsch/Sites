@@ -15,4 +15,7 @@
   <string name="site_image">Site Image</string>
   <string name="add_edit_site">Add Site</string>
   <string name="change_site_image">Change Image</string>
+  <string name="title_activity_siteList">Sites</string>
+  <string name="title_activity_maps">Find your Sites</string>
+  <string name="title_activity_site_maps">Find your Sites</string>
 </resources>

@@ -9,6 +9,7 @@ import othr.de.sites.R
 
 import kotlinx.android.synthetic.main.activity_site_view.*
 import kotlinx.android.synthetic.main.content_site_view.*
+import othr.de.sites.R.id.*
 import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 
@@ -28,11 +29,10 @@ class SiteView : AppCompatActivity() {
       presenter.doAddorEditSite(siteTitle.text.toString(), siteDescription.text.toString())
     }
 
-    siteCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
-      if (isChecked)
-        siteCheckBox.setEnabled(false)
-      //set siteDateVisited to the Date the checkbox is clicked
+    siteCheckBox.setOnClickListener {
+      presenter.doChangeCheckBox()
     }
+
 
     addImage.setOnClickListener {
       presenter.doSelectImage()

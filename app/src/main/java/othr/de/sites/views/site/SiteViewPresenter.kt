@@ -2,10 +2,15 @@ package othr.de.sites.views.site
 
 import android.content.Intent
 import kotlinx.android.synthetic.main.content_site_view.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivityForResult
 import othr.de.sites.helpers.showImagePicker
 import othr.de.sites.main.MainApp
 import othr.de.sites.models.Location
 import othr.de.sites.models.SiteModel
+import othr.de.sites.views.editLocation.EditLocationView
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class SiteViewPresenter(val view: SiteView) {
@@ -16,6 +21,7 @@ class SiteViewPresenter(val view: SiteView) {
   var site = SiteModel()
   var app: MainApp
   var edit = false
+  var location = Location(40.0, 0.0, 10f)
 
   init {
     app = view.application as MainApp
@@ -53,8 +59,27 @@ class SiteViewPresenter(val view: SiteView) {
     view.finish()
   }
 
+  fun doChangeCheckBox() {
+    if(view.siteCheckBox.isChecked) {
+      view.siteCheckBox.setEnabled(false)
+    }
+    val now = SimpleDateFormat("d MMM yyyy, hh:mm").format(Date())
+    view.siteDateVisited.text = now
+
+    site.date_visited = now
+  }
+
   fun doSelectImage() {
     showImagePicker(view, IMAGE_REQUEST)
+  }
+
+  fun doShowMap() {
+    if(site.zoom != 0f) {
+      location.latitute = site.latitute
+      location.longtitue = site.longtitue
+      location.zoom = site.zoom
+    }
+    view.startActivityForResult(view.intentFor<EditLocationView>().putExtra("location",location), LOCATION_REQUEST)
   }
 
   fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -74,9 +99,5 @@ class SiteViewPresenter(val view: SiteView) {
         }
       }
     }
-  }
-
-  fun doShowMap() {
-
   }
 }
