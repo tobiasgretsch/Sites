@@ -44,6 +44,7 @@ class SiteJSONStore : SiteStore, AnkoLogger {
     var foundSite: SiteModel? = siteList.find { s -> s.id == site.id }
 
     if (foundSite != null) {
+      foundSite.images = site.images
       foundSite.name = site.name
       foundSite.description = site.description
       foundSite.latitute = site.latitute

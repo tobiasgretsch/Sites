@@ -27,32 +27,31 @@
   />
   <Button
       android:text="@string/site_add_Image"
-      android:layout_width="160sp"
+      android:layout_width="125sp"
       android:layout_height="wrap_content"
       android:id="@+id/addImage"
       android:backgroundTint="@color/colorPrimary"
       app:layout_constraintStart_toStartOf="@+id/siteDescription"
-      android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/siteVisited"
+      android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/siteVisited"
       android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"
-      android:layout_marginStart="8dp"/>
+      app:layout_constraintHorizontal_bias="0.0"/>
   <Button
       android:text="@string/site_set_Location"
-      android:layout_width="160sp"
+      android:layout_width="125sp"
       android:layout_height="wrap_content"
       android:id="@+id/setLocation"
       android:backgroundTint="@color/colorPrimary"
       app:layout_constraintEnd_toStartOf="@+id/imageView"
-      android:layout_marginTop="8dp"
-      app:layout_constraintTop_toBottomOf="@+id/addImage"
-      app:layout_constraintStart_toStartOf="@+id/siteDescription"/>
-  <EditText
+      app:layout_constraintStart_toStartOf="@+id/siteDescription"
+      app:layout_constraintHorizontal_bias="0.949" android:layout_marginTop="24dp"
+      app:layout_constraintTop_toBottomOf="@+id/siteDateVisited"/>
+  <TextView
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:inputType="date"
       android:ems="10"
       android:id="@+id/siteDateVisited"
       android:hint="@string/site_hint_date"
-      android:textSize="14sp"
+      android:textSize="18sp"
       app:layout_constraintTop_toBottomOf="@+id/siteCheckBox"
       android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"
       app:layout_constraintStart_toEndOf="@+id/siteVisited" android:layout_marginStart="8dp"/>
@@ -60,24 +59,23 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="textPersonName"
-      android:text="@string/site_name"
       android:ems="10"
       android:id="@+id/siteTitle"
       app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
       android:layout_marginTop="16dp"
       app:layout_constraintTop_toTopOf="parent" app:layout_constraintLeft_toLeftOf="parent"
-  />
+      android:hint="@string/site_name"/>
   <EditText
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:inputType="textPersonName"
-      android:text="@string/site_description"
       android:ems="10"
       android:id="@+id/siteDescription"
       android:textSize="14sp" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
       android:layout_marginTop="8dp"
       app:layout_constraintTop_toBottomOf="@+id/siteTitle"
-      android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"/>
+      android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/imageView"
+      android:hint="@string/site_description"/>
   <ImageView
       android:layout_width="281dp"
       android:layout_height="197dp"
@@ -88,4 +86,13 @@
       tools:srcCompat="@tools:sample/backgrounds/scenic[11]"
       android:id="@+id/imageView" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="1.0" android:contentDescription="@string/site_image"/>
+  <Button
+      android:id="@+id/addSite"
+      android:text="Button"
+      android:layout_width="0dp"
+      android:backgroundTint="@color/colorPrimary"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toStartOf="@+id/imageView" android:layout_marginEnd="8dp"
+      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+      app:layout_constraintTop_toBottomOf="@+id/addImage"/>
 </android.support.constraint.ConstraintLayout>
