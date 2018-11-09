@@ -6,9 +6,9 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.jetbrains.anko.AnkoLogger
-import org.wit.placemark.helpers.exists
-import org.wit.placemark.helpers.read
-import org.wit.placemark.helpers.write
+import othr.de.sites.helpers.exists
+import othr.de.sites.helpers.read
+import othr.de.sites.helpers.write
 import java.util.*
 
 val JSON_FILE = "sites.json"

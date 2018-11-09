@@ -9,9 +9,10 @@ data class SiteModel(
   var id: Long = 0,
   var name: String = "",
   var description: String = "",
-  var images: List<String> = mutableListOf(""),
+  var images: String = "",
   var longtitue: Double = 0.0,
   var latitute: Double = 0.0,
+  var zoom: Float = 0F,
   var visited: Boolean = false
   //, var date_visited: Date
 ) : Parcelable

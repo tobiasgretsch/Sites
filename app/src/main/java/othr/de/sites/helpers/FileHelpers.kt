@@ -1,4 +1,4 @@
-package org.wit.placemark.helpers
+package othr.de.sites.helpers
 
 import android.content.Context
 import android.util.Log
