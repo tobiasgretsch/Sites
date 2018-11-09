@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_site.view.*
-import kotlinx.android.synthetic.main.content_site_view.view.*
-import org.wit.placemark.helpers.readImageFromPath
 import othr.de.sites.R
+import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 
 interface SiteListener {

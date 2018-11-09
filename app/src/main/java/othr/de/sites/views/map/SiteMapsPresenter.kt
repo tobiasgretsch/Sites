@@ -1,10 +1,12 @@
 package othr.de.sites.views.map
 
+import android.content.Intent
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.content_site_maps.*
 import kotlinx.android.synthetic.main.content_site_view.*
 import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.main.MainApp
@@ -35,6 +37,6 @@ class SiteMapsPresenter (val view: SiteMapsView) {
     val site = app.sites.findById(tag)
     view.currentTitle.text = site!!.name
     view.currentDescription.text = site!!.description
-    view.imageView.setImageBitmap(readImageFromPath(view, site!!.images))
+    view.imageViewMap.setImageBitmap(readImageFromPath(view, site!!.images))
   }
 }

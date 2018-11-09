@@ -9,8 +9,7 @@ import othr.de.sites.R
 
 import kotlinx.android.synthetic.main.activity_site_view.*
 import kotlinx.android.synthetic.main.content_site_view.*
-import org.wit.placemark.helpers.readImageFromPath
-import org.wit.placemark.helpers.showImagePicker
+import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 
 class SiteView : AppCompatActivity() {
@@ -38,6 +37,11 @@ class SiteView : AppCompatActivity() {
     addImage.setOnClickListener {
       presenter.doSelectImage()
     }
+
+    setLocation.setOnClickListener{
+      presenter.doShowMap()
+    }
+
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

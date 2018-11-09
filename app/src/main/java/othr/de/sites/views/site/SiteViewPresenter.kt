@@ -1,11 +1,10 @@
 package othr.de.sites.views.site
 
 import android.content.Intent
-import kotlinx.android.synthetic.main.activity_site_view.*
 import kotlinx.android.synthetic.main.content_site_view.*
-import org.jetbrains.anko.AnkoLogger
-import org.wit.placemark.helpers.showImagePicker
+import othr.de.sites.helpers.showImagePicker
 import othr.de.sites.main.MainApp
+import othr.de.sites.models.Location
 import othr.de.sites.models.SiteModel
 
 
@@ -24,7 +23,7 @@ class SiteViewPresenter(val view: SiteView) {
       edit = true
       site = view.intent.extras.getParcelable<SiteModel>("site_edit")
       view.showSite(site)
-      if(site.visited == true) {
+      if (site.visited == true) {
         view.siteCheckBox.setChecked(true)
         view.siteCheckBox.setEnabled(false)
       }
@@ -39,8 +38,7 @@ class SiteViewPresenter(val view: SiteView) {
 
     if (edit) {
       app.sites.update(site)
-    }
-    else {
+    } else {
       app.sites.create(site)
     }
     view.finish()
@@ -60,12 +58,25 @@ class SiteViewPresenter(val view: SiteView) {
   }
 
   fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-    when(requestCode) {
+    when (requestCode) {
       IMAGE_REQUEST -> {
-        site.images = data.data.toString()
-        view.showSite(site)
-       // view.siteImage.;
+        if (data != null) {
+          site.images = data.data.toString()
+          view.showSite(site)
+        }
+      }
+      LOCATION_REQUEST -> {
+        if (data != null) {
+          val location = data.extras.getParcelable<Location>("location")
+          site.latitute = location.latitute
+          site.longtitue = location.longtitue
+          site.zoom = location.zoom
+        }
       }
     }
+  }
+
+  fun doShowMap() {
+
   }
 }
