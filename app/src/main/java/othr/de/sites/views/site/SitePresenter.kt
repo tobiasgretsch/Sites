@@ -4,6 +4,8 @@ import android.content.Intent
 import kotlinx.android.synthetic.main.content_site_view.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
+import othr.de.sites.R
+import othr.de.sites.helpers.readImage
 import othr.de.sites.helpers.showImagePicker
 import othr.de.sites.main.MainApp
 import othr.de.sites.models.Location
@@ -13,27 +15,26 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SiteViewPresenter(val view: SiteView) {
+class SitePresenter(val view: SiteView) {
 
-  val IMAGE_REQUEST = 1
-  val LOCATION_REQUEST = 2
+  private val IMAGE_REQUEST = 1
+  private val LOCATION_REQUEST = 2
 
   var site = SiteModel()
-  var app: MainApp
+  var app: MainApp = view.application as MainApp
   var edit = false
-  var location = Location(40.0, 0.0, 10f)
+  private var location = Location(40.0, 0.0, 10f)
 
   init {
-    app = view.application as MainApp
     if (view.intent.hasExtra("site_edit")) {
       edit = true
       site = view.intent.extras.getParcelable<SiteModel>("site_edit")
       view.showSite(site)
-      if (site.visited == true) {
-        view.siteCheckBox.setChecked(true)
-        view.siteCheckBox.setEnabled(false)
+      if (site.visited) {
+        view.siteCheckBox.isChecked = true
+        view.siteCheckBox.isEnabled = false
       }
-      view.addSite.text = "Save Site"
+      view.addSite.setText(R.string.save_site)
     }
   }
 
@@ -61,7 +62,7 @@ class SiteViewPresenter(val view: SiteView) {
 
   fun doChangeCheckBox() {
     if(view.siteCheckBox.isChecked) {
-      view.siteCheckBox.setEnabled(false)
+      view.siteCheckBox.isEnabled = false
     }
     val now = SimpleDateFormat("d MMM yyyy, hh:mm").format(Date())
     view.siteDateVisited.text = now
@@ -85,18 +86,16 @@ class SiteViewPresenter(val view: SiteView) {
   fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
     when (requestCode) {
       IMAGE_REQUEST -> {
-        if (data != null) {
-          site.images = data.data.toString()
-          view.showSite(site)
-        }
+        site.images = data.data.toString()
+        view.siteImage.setImageBitmap(readImage(view, resultCode, data))
+        view.addImage.setText(R.string.change_site_image)
+        //view.showSite(site)
       }
       LOCATION_REQUEST -> {
-        if (data != null) {
           val location = data.extras.getParcelable<Location>("location")
-          site.latitute = location.latitute
+          site.latitute = location!!.latitute
           site.longtitue = location.longtitue
           site.zoom = location.zoom
-        }
       }
     }
   }

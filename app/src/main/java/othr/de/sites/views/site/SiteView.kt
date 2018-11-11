@@ -9,13 +9,12 @@ import othr.de.sites.R
 
 import kotlinx.android.synthetic.main.activity_site_view.*
 import kotlinx.android.synthetic.main.content_site_view.*
-import othr.de.sites.R.id.*
 import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 
 class SiteView : AppCompatActivity() {
 
-  lateinit var presenter: SiteViewPresenter
+  private lateinit var presenter: SitePresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -23,7 +22,7 @@ class SiteView : AppCompatActivity() {
     siteToolbar.title = "Site" //Hier den namen der Angeklickten Site zeigen? Zum Edit/Add eine eigene Activity?
     setSupportActionBar(siteToolbar)
 
-    presenter = SiteViewPresenter(this)
+    presenter = SitePresenter(this)
 
     addSite.setOnClickListener {
       presenter.doAddorEditSite(siteTitle.text.toString(), siteDescription.text.toString())
@@ -47,7 +46,7 @@ class SiteView : AppCompatActivity() {
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     menuInflater.inflate(R.menu.menu_site, menu)
     if (presenter.edit) {
-      menu.getItem(0).setVisible(true)
+      menu.getItem(0).isVisible = true
     }
     return super.onCreateOptionsMenu(menu)
   }
@@ -64,8 +63,8 @@ class SiteView : AppCompatActivity() {
     siteTitle.setText(site.name)
     siteDescription.setText(site.description)
     siteImage.setImageBitmap(readImageFromPath(this,site.images))
-    siteCheckBox.setChecked(site.visited)
-    siteDateVisited.setText(site.date_visited)
+    siteCheckBox.isChecked = site.visited
+    siteDateVisited.text = site.date_visited
     if(site.images != "") {
       addImage.setText(R.string.change_site_image)
     }
