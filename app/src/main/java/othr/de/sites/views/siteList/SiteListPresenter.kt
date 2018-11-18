@@ -2,9 +2,11 @@ package othr.de.sites.views.siteList
 
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import othr.de.sites.main.MainApp
 import othr.de.sites.models.SiteModel
+import othr.de.sites.views.settings.SettingsView
 import othr.de.sites.views.site.SiteView
 
 class SiteListPresenter(val view: SiteListView){
@@ -23,5 +25,9 @@ class SiteListPresenter(val view: SiteListView){
 
   fun doEditSite(site: SiteModel) {
     view.startActivityForResult(view.intentFor<SiteView>().putExtra("site_edit",site),0)
+  }
+
+  fun doOpenSettings() {
+    view.startActivity(view.intentFor<SettingsView>())
   }
 }

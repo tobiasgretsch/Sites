@@ -35,6 +35,7 @@ class SiteListView : AppCompatActivity(), SiteListener {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
       R.id.item_up -> {if (presenter.getSites().size > 0) recyclerView.smoothScrollToPosition(0)}
+      R.id.item_settings -> presenter.doOpenSettings();
     }
     return super.onOptionsItemSelected(item)
   }
