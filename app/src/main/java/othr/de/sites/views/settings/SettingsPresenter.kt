@@ -16,14 +16,18 @@ class SettingsPresenter(val view: SettingsView) {
   fun doShowVisited() {
     val visitedSites = sites.filter { it.visited }
     if (visitedSites.isEmpty()) {
-      view.btnTest.text = "No Sites Visited yet"
+      view.settings_sites_visited.text = "No Sites Visited yet"
     } else {
-      if(visitedSites.size == 1) {
-        view.btnTest.text = ("1 Site visited")
-      } else {
-        view.btnTest.text = (visitedSites.size.toString() + " Sites visited")
-      }
+      view.settings_sites_visited.text = visitedSites.size.toString()
     }
+  }
+
+  fun doShowNumberOfSites() {
+    view.settings_number_of_sites.text = sites.size.toString();
+  }
+
+  fun doFinish() {
+    view.finish()
   }
 
 }
