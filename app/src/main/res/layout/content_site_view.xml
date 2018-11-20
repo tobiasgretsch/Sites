@@ -95,4 +95,5 @@
       tools:srcCompat="@tools:sample/backgrounds/scenic[11]" android:id="@+id/siteImage"
       android:contentDescription="@string/site_image"
       android:visibility="visible"/>
+  <!-- TODO Kommentarfeld hinzufügen? Scrollview einbauen? platzierung überlegen -->
 </android.support.constraint.ConstraintLayout>

@@ -40,7 +40,12 @@
         android:layout_toEndOf="@+id/listIcon"
         android:textSize="18sp" android:layout_toStartOf="@id/site_checkBox"/>
     <CheckBox
-        android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_alignParentEnd="true"
-        android:id="@+id/site_checkBox" android:layout_width="wrap_content" android:enabled="false"/>
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/site_checkBox"
+        android:layout_width="wrap_content"
+        android:enabled="false"/>
+        <!-- TODO style="?android:attr/starStyle" für eine Favorite checkbox? -->
   </RelativeLayout>
 </android.support.v7.widget.CardView>

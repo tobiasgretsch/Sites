@@ -19,7 +19,7 @@ class SiteAdapter constructor(
 ) : RecyclerView.Adapter<SiteAdapter.MainHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-    return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_site, parent, false))
+    return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_site, parent, false))
   }
 
   override fun getItemCount(): Int {
@@ -35,10 +35,12 @@ class SiteAdapter constructor(
 
     fun bind(site: SiteModel, listener: SiteListener) {
       itemView.listIcon.setImageBitmap(readImageFromPath(itemView.context, site.images))
+      if(!site.defaultLocation) {
+        itemView.siteLat.text = site.latitute.toString()
+        itemView.siteLng.text = site.longtitue.toString()
+      }
       itemView.siteListTitle.text = site.name
-      itemView.siteLat.setText(site.latitute.toString())
-      itemView.siteLng.setText(site.longtitue.toString())
-      itemView.site_checkBox.setChecked(site.visited)
+      itemView.site_checkBox.isChecked = site.visited
       itemView.setOnClickListener {listener.onSiteClick(site)}
     }
   }

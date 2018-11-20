@@ -9,10 +9,12 @@ import othr.de.sites.R
 
 import kotlinx.android.synthetic.main.activity_site_view.*
 import kotlinx.android.synthetic.main.content_site_view.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.toast
 import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 
-class SiteView : AppCompatActivity() {
+class SiteView : AppCompatActivity(), AnkoLogger {
 
   private lateinit var presenter: SitePresenter
 
@@ -25,7 +27,11 @@ class SiteView : AppCompatActivity() {
     presenter = SitePresenter(this)
 
     addSite.setOnClickListener {
-      presenter.doAddorEditSite(siteTitle.text.toString(), siteDescription.text.toString())
+      if(siteTitle.text.toString().isEmpty()) {
+        toast(R.string.emptyTitleToast)
+      } else {
+        presenter.doAddorEditSite(siteTitle.text.toString(), siteDescription.text.toString())
+      }
     }
 
     siteCheckBox.setOnClickListener {

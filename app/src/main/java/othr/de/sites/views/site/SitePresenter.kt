@@ -3,7 +3,6 @@ package othr.de.sites.views.site
 import android.content.Intent
 import kotlinx.android.synthetic.main.content_site_view.*
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivityForResult
 import othr.de.sites.R
 import othr.de.sites.helpers.readImage
 import othr.de.sites.helpers.showImagePicker
@@ -15,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SitePresenter(val view: SiteView) {
+class SitePresenter(val view: SiteView){
 
   private val IMAGE_REQUEST = 1
   private val LOCATION_REQUEST = 2
@@ -38,11 +37,11 @@ class SitePresenter(val view: SiteView) {
     }
   }
 
+
   fun doAddorEditSite(name: String, description: String) {
     site.name = name
     site.description = description
     site.visited = view.siteCheckBox.isChecked
-
     if (edit) {
       app.sites.update(site)
     } else {
@@ -61,26 +60,31 @@ class SitePresenter(val view: SiteView) {
   }
 
   fun doChangeCheckBox() {
-    if(view.siteCheckBox.isChecked) {
+    if (view.siteCheckBox.isChecked) {
       view.siteCheckBox.isEnabled = false
     }
-    val now = SimpleDateFormat("d MMM yyyy, hh:mm").format(Date())
+    val now = SimpleDateFormat("d MMM yyyy, hh:mm", Locale.GERMAN).format(Date())
     view.siteDateVisited.text = now
 
     site.date_visited = now
   }
 
   fun doSelectImage() {
+    //TODO 4 Bilder auswählen! Wie die Bilder auf der SiteView anzeigen?
     showImagePicker(view, IMAGE_REQUEST)
   }
 
   fun doShowMap() {
-    if(site.zoom != 0f) {
+    if (site.zoom != 0f) {
       location.latitute = site.latitute
       location.longtitue = site.longtitue
       location.zoom = site.zoom
     }
-    view.startActivityForResult(view.intentFor<EditLocationView>().putExtra("location",location), LOCATION_REQUEST)
+    if (site.defaultLocation) {
+      site.defaultLocation = false
+    }
+
+    view.startActivityForResult(view.intentFor<EditLocationView>().putExtra("location", location), LOCATION_REQUEST)
   }
 
   fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -89,13 +93,13 @@ class SitePresenter(val view: SiteView) {
         site.images = data.data.toString()
         view.siteImage.setImageBitmap(readImage(view, resultCode, data))
         view.addImage.setText(R.string.change_site_image)
-        //view.showSite(site)
       }
       LOCATION_REQUEST -> {
-          val location = data.extras.getParcelable<Location>("location")
-          site.latitute = location!!.latitute
-          site.longtitue = location.longtitue
-          site.zoom = location.zoom
+        val location = data.extras.getParcelable<Location>("location")
+        site.latitute = location!!.latitute
+        site.longtitue = location.longtitue
+        site.zoom = location.zoom
+
       }
     }
   }

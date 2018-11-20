@@ -11,9 +11,10 @@ data class SiteModel(
   var name: String = "",
   var description: String = "",
   var images: String = "",
-  var longtitue: Double = 0.0,
-  var latitute: Double = 0.0,
-  var zoom: Float = 0F,
+  var latitute: Double = 49.0193773,
+  var longtitue: Double = 12.0985301,
+  var zoom: Float = 18F,
+  var defaultLocation: Boolean = true,
   var visited: Boolean = false,
   var date_visited: String = ""
 
@@ -21,13 +22,14 @@ data class SiteModel(
 
 @Parcelize
 data class Location(
-  var longtitue: Double = 0.0 ,
+  var longtitue: Double = 0.0,
   var latitute: Double = 0.0,
   var zoom: Float = 0F
-) :Parcelable
+) : Parcelable
 
 data class User(
   var email: String = "",
-  var password: String = ""
+  var password: String = "",
+  var sites: List<SiteModel>
   //speichern der Userdaten über die besuchten Sites
 )
