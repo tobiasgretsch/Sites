@@ -6,9 +6,9 @@
       android:visible="false"
       android:id="@+id/item_delete"
       android:title="@string/menu_deleteSite"
-      app:showAsAction="always" android:icon="@android:drawable/ic_menu_delete"/>
+      app:showAsAction="always"/>
   <item
-      android:id="@+id/item_cancel"
-      android:title="@string/menu_cancelSite"
-      app:showAsAction="always" android:icon="@android:drawable/ic_menu_close_clear_cancel"/>
+      android:id="@+id/item_save"
+      android:title="@string/menu_addSite"
+      app:showAsAction="always"/>
 </menu>

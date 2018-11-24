@@ -28,20 +28,18 @@ class SiteAdapter constructor(
 
   override fun onBindViewHolder(holder: MainHolder, position: Int) {
     val site = sites[holder.adapterPosition]
-    holder.bind(site,listener)
+    holder.bind(site, listener)
   }
 
   class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(site: SiteModel, listener: SiteListener) {
       itemView.listIcon.setImageBitmap(readImageFromPath(itemView.context, site.images))
-      if(!site.defaultLocation) {
-        itemView.siteLat.text = site.latitute.toString()
-        itemView.siteLng.text = site.longtitue.toString()
-      }
+      itemView.siteLat.text = site.latitute.toString()
+      itemView.siteLng.text = site.longtitue.toString()
       itemView.siteListTitle.text = site.name
       itemView.site_checkBox.isChecked = site.visited
-      itemView.setOnClickListener {listener.onSiteClick(site)}
+      itemView.setOnClickListener { listener.onSiteClick(site) }
     }
   }
 }

@@ -11,6 +11,6 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:src="@drawable/splashscreen"
-      android:scaleType="centerInside" android:background="@color/colorAccent"/>
+      android:scaleType="centerInside"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,33 +1,28 @@
 package othr.de.sites.views.settings
 
 import kotlinx.android.synthetic.main.activity_settings_view.*
-import othr.de.sites.main.MainApp
+import othr.de.sites.views.base.BasePresenter
+import othr.de.sites.views.base.BaseView
 
-class SettingsPresenter(val view: SettingsView) {
-
-  private var app: MainApp
-
-  init {
-    app = view.application as MainApp
-  }
+class SettingsPresenter(view: BaseView): BasePresenter(view) {
 
   val sites = app.sites.findAll()
 
   fun doShowVisited() {
     val visitedSites = sites.filter { it.visited }
     if (visitedSites.isEmpty()) {
-      view.settings_sites_visited.text = "No Sites Visited yet"
+      view!!.settings_sites_visited.text = "No Sites Visited yet"
     } else {
-      view.settings_sites_visited.text = visitedSites.size.toString()
+      view!!.settings_sites_visited.text = visitedSites.size.toString()
     }
   }
 
   fun doShowNumberOfSites() {
-    view.settings_number_of_sites.text = sites.size.toString();
+    view!!.settings_number_of_sites.text = sites.size.toString()
   }
 
   fun doFinish() {
-    view.finish()
+    view?.finish()
   }
 
 }

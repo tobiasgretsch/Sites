@@ -1,13 +1,13 @@
 package othr.de.sites.views.editLocation
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.Marker
 import othr.de.sites.R
+import othr.de.sites.views.base.BaseView
 
-class EditLocationView : AppCompatActivity(), GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
+class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 
   lateinit var map: GoogleMap
   lateinit var presenter: EditLocationPresenter
@@ -16,7 +16,7 @@ class EditLocationView : AppCompatActivity(), GoogleMap.OnMarkerDragListener, Go
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_maps)
     val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-    presenter = EditLocationPresenter(this)
+    presenter = initPresenter(EditLocationPresenter(this)) as EditLocationPresenter
     mapFragment.getMapAsync {
       map = it
       map.setOnMarkerDragListener(this)

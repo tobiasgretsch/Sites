@@ -50,6 +50,7 @@ class SiteJSONStore : SiteStore, AnkoLogger {
       foundSite.latitute = site.latitute
       foundSite.longtitue = site.longtitue
       foundSite.visited = site.visited
+      foundSite.additionalInfo = site.additionalInfo
     }
     serialize()
   }

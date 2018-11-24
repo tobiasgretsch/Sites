@@ -1,7 +1,6 @@
 package othr.de.sites.views.siteList
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -9,8 +8,9 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_site_list_view.*
 import othr.de.sites.R
 import othr.de.sites.models.SiteModel
+import othr.de.sites.views.base.BaseView
 
-class SiteListView : AppCompatActivity(), SiteListener {
+class SiteListView : BaseView(), SiteListener {
 
   lateinit var presenter: SiteListPresenter
 
@@ -18,12 +18,17 @@ class SiteListView : AppCompatActivity(), SiteListener {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_site_list_view)
 
-    presenter = SiteListPresenter(this)
+    presenter = initPresenter(SiteListPresenter(this)) as SiteListPresenter
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = SiteAdapter(presenter.getSites(), this)
-    recyclerView?.adapter?.notifyDataSetChanged()
+    presenter.loadSites();
+
+  }
+
+  override fun showSites(sites: List<SiteModel>) {
+    recyclerView.adapter = SiteAdapter(sites, this)
+    recyclerView.adapter?.notifyDataSetChanged()
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -34,8 +39,10 @@ class SiteListView : AppCompatActivity(), SiteListener {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
-      R.id.item_up -> {if (presenter.getSites().size > 0) recyclerView.smoothScrollToPosition(0)}
-      R.id.item_settings -> presenter.doOpenSettings();
+      R.id.item_up -> presenter.doSmoothScroll(recyclerView)
+      R.id.item_settings -> presenter.doOpenSettings()
+      R.id.item_logout -> presenter.doLogout()
+      R.id.item_map -> presenter.doShowMap()
     }
     return super.onOptionsItemSelected(item)
   }
@@ -45,7 +52,7 @@ class SiteListView : AppCompatActivity(), SiteListener {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    recyclerView.adapter?.notifyDataSetChanged()
+    presenter.loadSites()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

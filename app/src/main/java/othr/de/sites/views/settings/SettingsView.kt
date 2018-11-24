@@ -1,13 +1,12 @@
 package othr.de.sites.views.settings
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_settings_view.*
 import othr.de.sites.R
+import othr.de.sites.views.base.BaseView
 
-class SettingsView : AppCompatActivity() {
+class SettingsView : BaseView() {
 
   private lateinit var presenter : SettingsPresenter
 
@@ -15,11 +14,10 @@ class SettingsView : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_settings_view)
 
-    presenter = SettingsPresenter(this)
+    presenter = initPresenter(SettingsPresenter(this)) as SettingsPresenter
 
     presenter.doShowVisited()
     presenter.doShowNumberOfSites()
-
 
   }
 

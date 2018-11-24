@@ -1,28 +1,29 @@
 package othr.de.sites.views.map
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.activity_site_maps.*
 import kotlinx.android.synthetic.main.content_site_maps.*
 import othr.de.sites.R
-import othr.de.sites.models.Location
+import othr.de.sites.views.base.BaseView
 
 
-class SiteMapsView : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
+class SiteMapsView : BaseView(), GoogleMap.OnMarkerClickListener {
 
   lateinit var presenter: SiteMapsPresenter
+  lateinit var map: GoogleMap
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_site_maps)
-    setSupportActionBar(toolbarMaps)
+
+    presenter = initPresenter(SiteMapsPresenter(this)) as SiteMapsPresenter
 
     mapView.onCreate(savedInstanceState);
     mapView.getMapAsync {
+      map = it
+      map.setOnMarkerClickListener(this)
       presenter.doConfigureMap(it)
     }
   }

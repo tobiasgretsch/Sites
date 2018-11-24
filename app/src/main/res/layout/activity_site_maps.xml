@@ -6,10 +6,9 @@
   android:layout_height="match_parent"
   tools:context="othr.de.sites.views.map.SiteMapsView">
 
-  <android.support.design.widget.AppBarLayout
+  <!--<android.support.design.widget.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorAccent"
     android:fitsSystemWindows="true"
     app:elevation="0dip"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -20,7 +19,7 @@
       android:layout_height="wrap_content"
       app:titleTextColor="@color/colorPrimary"/>
 
-  </android.support.design.widget.AppBarLayout>
+  </android.support.design.widget.AppBarLayout> -->
 
   <include layout="@layout/content_site_maps" />
 

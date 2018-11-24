@@ -2,7 +2,6 @@ package othr.de.sites.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import java.util.*
 
 @Parcelize
 data class SiteModel(
@@ -13,10 +12,10 @@ data class SiteModel(
   var images: String = "",
   var latitute: Double = 49.0193773,
   var longtitue: Double = 12.0985301,
-  var zoom: Float = 18F,
-  var defaultLocation: Boolean = true,
+  var zoom: Float = 16F,
   var visited: Boolean = false,
-  var date_visited: String = ""
+  var date_visited: String = "",
+  var additionalInfo: String = ""
 
 ) : Parcelable
 
@@ -27,9 +26,10 @@ data class Location(
   var zoom: Float = 0F
 ) : Parcelable
 
+@SuppressWarnings
+@Parcelize
 data class User(
   var email: String = "",
   var password: String = "",
   var sites: List<SiteModel>
-  //speichern der Userdaten über die besuchten Sites
-)
+) :Parcelable
