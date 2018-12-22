@@ -6,6 +6,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import othr.de.sites.R
 import othr.de.sites.helpers.readImage
+import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.helpers.showImagePicker
 import othr.de.sites.models.Location
 import othr.de.sites.models.SiteModel
@@ -97,6 +98,24 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
         site.zoom = location.zoom
 
       }
+    }
+  }
+
+  fun doSetImageEmtyString(): Boolean {
+    site.images = ""
+    view!!.siteImage.setImageBitmap(readImageFromPath(view!!,site.images))
+    view!!.siteImage.setImageResource(R.drawable.splashscreen) //TODO hier ein plus Ican rein setzen
+    return true
+  }
+
+  fun doManageImages() {
+    when (site.images) { //TODO site.images.size
+                         //TODO Wenn Kein Bild da Icon bei [0] setzen
+                        //bei 1 -> Bild setzen auf [0] und [1] anzeigen mit Plus
+                        //bei 2 -> Bild setzen auf [1] und [2] anzeigen mit Plus usw
+                        //Funktion durchlaufen die überprüft ob zwischen den Bildern leere Strings sind
+                        //FIXME bei site Liste mit 4 Strings? Wie dann die [when] Bedingung setzen wenn die size immer 4 ist?
+                        //
     }
   }
 }

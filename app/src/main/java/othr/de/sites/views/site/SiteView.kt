@@ -28,6 +28,13 @@ class SiteView : BaseView(){
       presenter.doChangeCheckBox()
     }
 
+    siteImage.setOnClickListener {
+      presenter.doSelectImage()
+    }
+
+    siteImage.setOnLongClickListener {
+      presenter.doSetImageEmtyString()
+    }
 
     addImage.setOnClickListener {
       presenter.doSelectImage()
@@ -65,6 +72,8 @@ class SiteView : BaseView(){
     siteAdditionalInfo.setText(site.additionalInfo)
     if (site.images != "") {
       addImage.setText(R.string.site_changeImage)
+    } else {
+      //TODO set plus ICON Recource here!
     }
   }
 
