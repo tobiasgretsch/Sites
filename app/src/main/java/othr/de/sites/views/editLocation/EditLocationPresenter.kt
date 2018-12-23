@@ -1,7 +1,10 @@
 package othr.de.sites.views.editLocation
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -11,7 +14,7 @@ import othr.de.sites.models.Location
 import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView
 
-class EditLocationPresenter(view: BaseView ) :BasePresenter(view){
+class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
 
   var location = Location()
 
@@ -20,9 +23,10 @@ class EditLocationPresenter(view: BaseView ) :BasePresenter(view){
   }
 
   fun initMap(map: GoogleMap) {
+    map.clear()
     val loc = LatLng(location.latitute, location.longtitue)
     val options = MarkerOptions()
-      .title("Site")
+      .title(location.titel)
       .snippet("GPS : " + loc.toString())
       .draggable(true)
       .position(loc)
@@ -36,6 +40,11 @@ class EditLocationPresenter(view: BaseView ) :BasePresenter(view){
     location.zoom = zoom
   }
 
+  fun doUpdateLocation(lat: Double, lng: Double) {
+    location.latitute = lat
+    location.longtitue = lng
+  }
+
   fun doOnBackPressed() {
     val resultIntent = Intent()
     resultIntent.putExtra("location", location)
@@ -47,4 +56,5 @@ class EditLocationPresenter(view: BaseView ) :BasePresenter(view){
     val loc = LatLng(location.latitute, location.longtitue)
     marker.setSnippet("GPS : " + loc.toString())
   }
+
 }

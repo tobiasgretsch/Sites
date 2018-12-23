@@ -12,7 +12,7 @@ import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BaseView
 
-class SiteView : BaseView(){
+class SiteView : BaseView() {
 
   private lateinit var presenter: SitePresenter
 
@@ -20,7 +20,7 @@ class SiteView : BaseView(){
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_site_view)
 
-    init(siteToolbar)
+    super.init(siteToolbar,true)
 
     presenter = initPresenter(SitePresenter(this)) as SitePresenter
 
@@ -57,7 +57,11 @@ class SiteView : BaseView(){
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_save -> presenter.doAddorEditSite(siteTitle.text.toString(), siteDescription.text.toString(), siteAdditionalInfo.text.toString())
+      R.id.item_save -> presenter.doAddorEditSite(
+        siteTitle.text.toString(),
+        siteDescription.text.toString(),
+        siteAdditionalInfo.text.toString()
+      )
       R.id.item_delete -> presenter.doDelete()
     }
     return super.onOptionsItemSelected(item)
@@ -83,6 +87,11 @@ class SiteView : BaseView(){
       presenter.doActivityResult(requestCode, resultCode, data)
     }
   }
+
+  //override fun onResume() {
+  //  super.onResume()
+  //  presenter.doRestartLocationUpdates()
+  //}
 
   override fun onBackPressed() {
     presenter.doCancel()

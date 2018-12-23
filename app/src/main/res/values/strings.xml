@@ -26,4 +26,5 @@
   <string name="menu_saveSite">Save</string>
   <string name="menu_upSite">Up</string>
   <string name="menu_settingsSite">Settings</string>
+  <string name="title_splashscreen">Splashscreen</string>
 </resources>
