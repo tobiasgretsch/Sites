@@ -23,7 +23,8 @@ data class SiteModel(
 data class Location(
   var longtitue: Double = 0.0,
   var latitute: Double = 0.0,
-  var zoom: Float = 0F
+  var zoom: Float = 0F,
+  var titel: String = ""
 ) : Parcelable
 
 @SuppressWarnings

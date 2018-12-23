@@ -35,8 +35,8 @@ class SiteAdapter constructor(
 
     fun bind(site: SiteModel, listener: SiteListener) {
       itemView.listIcon.setImageBitmap(readImageFromPath(itemView.context, site.images))
-      itemView.siteLat.text = site.latitute.toString()
-      itemView.siteLng.text = site.longtitue.toString()
+      itemView.siteLat.text = "%.4f".format(site.latitute)
+      itemView.siteLng.text = "%.4f".format(site.longtitue)
       itemView.siteListTitle.text = site.name
       itemView.site_checkBox.isChecked = site.visited
       itemView.setOnClickListener { listener.onSiteClick(site) }
