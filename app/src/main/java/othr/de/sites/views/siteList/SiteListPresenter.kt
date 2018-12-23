@@ -1,6 +1,6 @@
 package othr.de.sites.views.siteList
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView
@@ -28,7 +28,7 @@ class SiteListPresenter(view: BaseView) :BasePresenter(view){
     view?.navigateTo(VIEW.MAP)
   }
 
-  fun doSmoothScroll(recyclerView: RecyclerView) {
+  fun doSmoothScroll(recyclerView: androidx.recyclerview.widget.RecyclerView) {
     if(app.sites.findAll().isNotEmpty()) {
       recyclerView.smoothScrollToPosition(0)
     }
