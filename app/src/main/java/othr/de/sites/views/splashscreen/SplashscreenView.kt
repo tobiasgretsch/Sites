@@ -1,7 +1,7 @@
 package othr.de.sites.views.splashscreen
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import org.jetbrains.anko.startActivity
 import othr.de.sites.R
