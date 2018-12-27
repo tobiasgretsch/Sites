@@ -37,9 +37,6 @@
     <activity
         android:name=".views.siteList.SiteListView"
         android:label="@string/title_activity_siteList">
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value=".views.siteList.SiteListView"/>
     </activity>
 
     <activity
@@ -71,9 +68,6 @@
         android:name=".views.login.LoginView"
         android:label="@string/title_activity_login"
         android:theme="@style/AppTheme">
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value=".views.siteList.SiteListView"/>
     </activity>
 
     <meta-data

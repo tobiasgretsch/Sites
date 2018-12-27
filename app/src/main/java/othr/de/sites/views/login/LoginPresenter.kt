@@ -1,24 +1,55 @@
 package othr.de.sites.views.login
 
+import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import othr.de.sites.R
+import othr.de.sites.models.firebase.SiteFireStore
 import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView
 import othr.de.sites.views.base.VIEW
 
 class LoginPresenter (view: BaseView): BasePresenter (view),AnkoLogger {
 
-  fun doLogin(email: String, password: String) {
-    if(email.isEmpty() && password.isEmpty()) {
-      view?.toast(R.string.login_emptyEmailPasswordToast)
-    } else {
-      if(email == "1" && password == "1")
-        view?.navigateTo(VIEW.LIST)
+  var auth: FirebaseAuth = FirebaseAuth.getInstance()
+  var fireStore: SiteFireStore? = null
 
-
-      //TODO : Login Action und prüfen der richtigkeit der Daten passiert hier
+  init {
+    if(app.sites is SiteFireStore) {
+      fireStore = app.sites as SiteFireStore
     }
   }
-  //TODO if no User found with the entered Email, show message and create new User with default start Set of Sites
+
+  fun doLogin(email: String, password: String) {
+    view?.showProgress()
+    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(view!!) {task ->
+      if(task.isSuccessful) {
+        if(fireStore != null) {
+          fireStore!!.fetchSites {
+            view?.hideProgress()
+            view?.navigateTo(VIEW.LIST)
+          }
+        } else {
+          view?.hideProgress()
+          view?.navigateTo(VIEW.LIST)
+        }
+      } else {
+        view?.hideProgress()
+        view?.toast("Login Failed: ${task.exception?.message}")
+      }
+      view?.hideProgress()
+    }
+  }
+
+  fun doSignUp(email:String, password: String) {
+    view?.showProgress()
+    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(view!!) {task ->
+      if(task.isSuccessful) {
+        view?.navigateTo(VIEW.LIST)
+      } else {
+        view?.toast("Sign up Failed: ${task.exception?.message}")
+      }
+      view?.hideProgress()
+    }
+  }
 }

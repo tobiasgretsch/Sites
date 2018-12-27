@@ -1,7 +1,6 @@
 package othr.de.sites.models
 
 import android.content.Context
-import com.google.android.gms.common.internal.safeparcel.SafeParcelableSerializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -20,6 +19,9 @@ fun generateRandomId(): Long {
 }
 
 class SiteJSONStore : SiteStore, AnkoLogger {
+  override fun clear() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 
   val context: Context
   var sites = mutableListOf<SiteModel>()
@@ -47,8 +49,8 @@ class SiteJSONStore : SiteStore, AnkoLogger {
       foundSite.images = site.images
       foundSite.name = site.name
       foundSite.description = site.description
-      foundSite.latitute = site.latitute
-      foundSite.longtitue = site.longtitue
+      foundSite.latitude = site.latitude
+      foundSite.longitude = site.longitude
       foundSite.visited = site.visited
       foundSite.additionalInfo = site.additionalInfo
     }
