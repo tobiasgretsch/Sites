@@ -37,9 +37,24 @@
       android:background="@color/common_google_signin_btn_text_dark_default"/>
   <Button
       android:text="@string/login_btnLogin"
-      android:layout_width="300dp"
+      android:layout_width="150dp"
       android:layout_height="wrap_content"
-      android:id="@+id/btnLogin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-      app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="50dp"
+      android:id="@+id/btnLogin" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+      android:layout_marginTop="50dp"
       app:layout_constraintTop_toBottomOf="@+id/textView4" android:backgroundTint="@color/colorPrimary"/>
+  <Button
+      android:text="@string/login_btnSignUp"
+      android:layout_width="150dp"
+      android:layout_height="wrap_content"
+      android:id="@+id/btn_SignUp" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+      android:layout_marginTop="50dp" app:layout_constraintTop_toBottomOf="@+id/textView4"
+      android:backgroundTint="@color/colorPrimary"/>
+
+  <ProgressBar
+      android:layout_width="200dp"
+      android:layout_height="100dp"
+      android:visibility="invisible"
+      android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/btn_SignUp"
+      app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="5dp"
+      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp" android:id="@+id/progressBar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,8 +57,8 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
   @SuppressLint("MissingPermission")
   fun doSetCurrentLocation() {
     locationService.lastLocation.addOnSuccessListener {
-      site.latitute = it.latitude
-      site.longtitue = it.longitude
+      site.latitude = it.latitude
+      site.longitude = it.longitude
     }
   }
 
@@ -109,7 +109,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
       VIEW.LOCATION,
       LOCATION_REQUEST,
       "location",
-      Location(site.longtitue, site.latitute, site.zoom, site.name)
+      Location(site.longitude, site.latitude, site.zoom, site.name)
     )
   }
 
@@ -120,8 +120,8 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
       override fun onLocationResult(locationResult: LocationResult?) {
         if (locationResult != null && locationResult.locations != null) {
           val l = locationResult.locations.last()
-          site.latitute = l.latitude
-          site.longtitue = l.longitude
+          site.latitude = l.latitude
+          site.longitude = l.longitude
         }
       }
     }
@@ -139,8 +139,8 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
       }
       LOCATION_REQUEST -> {
         val location = data.extras.getParcelable<Location>("location")
-        site.latitute = location!!.latitute
-        site.longtitue = location.longtitue
+        site.latitude = location!!.latitute
+        site.longitude = location.longtitue
         site.zoom = location.zoom
 
       }

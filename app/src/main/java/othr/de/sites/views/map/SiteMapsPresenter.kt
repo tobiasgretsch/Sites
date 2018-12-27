@@ -1,5 +1,6 @@
 package othr.de.sites.views.map
 
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -11,19 +12,18 @@ import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView
 
-
 class SiteMapsPresenter(view: BaseView) : BasePresenter(view) {
 
   fun doConfigureMap(map: GoogleMap) {
     map.uiSettings.isZoomControlsEnabled = true
     val sites = app.sites.findAll()
     sites.forEach {
-      val loc = LatLng(it.latitute, it.longtitue)
+      val loc = LatLng(it.latitude, it.longitude)
       val options = MarkerOptions().title(it.name).position(loc)
-      map.addMarker(options).tag = it.id
+      map.addMarker(options).tag = it
       map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
     }
-    if(sites.isNotEmpty()) {
+    if (sites.isNotEmpty()) {
       val site = sites[sites.lastIndex]
       setCardViewValues(site)
     }
@@ -35,9 +35,10 @@ class SiteMapsPresenter(view: BaseView) : BasePresenter(view) {
     setCardViewValues(site)
   }
 
-  fun setCardViewValues(site : SiteModel?) {
+  fun setCardViewValues(site: SiteModel?) {
     view!!.currentTitle.text = site!!.name
     view!!.currentDescription.text = site.description
-    view!!.imageViewMap.setImageBitmap(readImageFromPath(view!!, site.images))
+    Glide.with(view!!).load(site.images).into(view!!.imageViewMap)
+    //view!!.imageViewMap.setImageBitmap(readImageFromPath(view!!, site.images))
   }
 }

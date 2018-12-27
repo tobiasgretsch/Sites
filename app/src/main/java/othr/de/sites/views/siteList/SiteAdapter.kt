@@ -1,9 +1,9 @@
 package othr.de.sites.views.siteList
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.card_site.view.*
 import othr.de.sites.R
 import othr.de.sites.helpers.readImageFromPath
@@ -34,9 +34,9 @@ class SiteAdapter constructor(
   class MainHolder constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     fun bind(site: SiteModel, listener: SiteListener) {
-      itemView.listIcon.setImageBitmap(readImageFromPath(itemView.context, site.images))
-      itemView.siteLat.text = "%.4f".format(site.latitute)
-      itemView.siteLng.text = "%.4f".format(site.longtitue)
+      Glide.with(itemView.context).load(site.images).into(itemView.listIcon)
+      itemView.siteLat.text = "%.4f".format(site.latitude)
+      itemView.siteLng.text = "%.4f".format(site.longitude)
       itemView.siteListTitle.text = site.name
       itemView.site_checkBox.isChecked = site.visited
       itemView.setOnClickListener { listener.onSiteClick(site) }

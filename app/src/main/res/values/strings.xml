@@ -18,6 +18,7 @@
   <string name="title_activity_settings">Settings</string>
   <string name="title_activity_login">Login</string>
   <string name="login_btnLogin">Login</string>
+  <string name="login_btnSignUp">Signup</string>
   <string name="login_emptyEmailPasswordToast">Enter a valid E-Mail and Password!</string>
   <string name="menu_addSite">Add</string>
   <string name="menu_deleteSite">Delete</string>
