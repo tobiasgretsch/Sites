@@ -1,6 +1,5 @@
 package othr.de.sites.views.siteList
 
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BasePresenter
@@ -39,5 +38,9 @@ class SiteListPresenter(view: BaseView) : BasePresenter(view) {
 
   fun loadSites() {
     view?.showSites(app.sites.findAll())
+  }
+
+  fun doShowFavorites() {
+    view?.navigateTo(VIEW.FAVORITES)
   }
 }

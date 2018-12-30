@@ -39,6 +39,12 @@ class SiteAdapter constructor(
       itemView.siteLng.text = "%.4f".format(site.longitude)
       itemView.siteListTitle.text = site.name
       itemView.site_checkBox.isChecked = site.visited
+      if(site.favorite) {
+        itemView.favorite_checkBox.visibility = View.VISIBLE
+        itemView.favorite_checkBox.isChecked = site.favorite
+      } else {
+        itemView.favorite_checkBox.visibility = View.INVISIBLE
+      }
       itemView.setOnClickListener { listener.onSiteClick(site) }
     }
   }

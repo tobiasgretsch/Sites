@@ -7,21 +7,22 @@ import androidx.appcompat.widget.Toolbar
 import org.jetbrains.anko.AnkoLogger
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.editLocation.EditLocationView
+import othr.de.sites.views.favorites.FavoritesView
 import othr.de.sites.views.login.LoginView
 import othr.de.sites.views.map.SiteMapsView
 import othr.de.sites.views.settings.SettingsView
 import othr.de.sites.views.site.SiteView
 import othr.de.sites.views.siteList.SiteListView
 
-val IMAGE_REQUEST = 1
-val LOCATION_REQUEST = 2
+//val IMAGE_REQUEST = 1
+//val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  LOCATION, SITE, MAP, LIST, SETTINGS, LOGIN
+  LOCATION, SITE, MAP, LIST, SETTINGS, LOGIN, FAVORITES
 }
 
-open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
-  var basePresenter: BasePresenter? = null;
+abstract class BaseView() : AppCompatActivity(), AnkoLogger {
+  private var basePresenter: BasePresenter? = null
 
   fun navigateTo(view: VIEW, code: Int = 0, key: String = "", value: Parcelable? = null) {
     var intent = Intent(this, SiteListView::class.java)
@@ -32,6 +33,7 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.MAP -> intent = Intent(this, SiteMapsView::class.java)
       VIEW.SETTINGS -> intent = Intent(this, SettingsView::class.java)
       VIEW.SITE -> intent = Intent(this, SiteView::class.java)
+      VIEW.FAVORITES -> intent = Intent(this,FavoritesView::class.java)
     }
     if (key != "") {
       intent.putExtra(key, value)

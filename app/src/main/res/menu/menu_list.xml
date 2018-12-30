@@ -4,26 +4,32 @@
 
   <item
       android:id="@+id/item_up"
-      android:icon="@android:drawable/arrow_up_float"
       android:title="@string/menu_upSite"
+      android:icon="@drawable/ic_up"
       app:showAsAction="always"/>
   <item
-      android:title="Map"
       android:id="@+id/item_map"
-      app:showAsAction="always"
-      android:icon="@android:drawable/ic_menu_mapmode"/>
+      android:title="@string/menu_map"
+      android:icon="@drawable/ic_map"
+      app:showAsAction="always"/>
   <item
       android:id="@+id/item_add"
-      android:icon="@android:drawable/ic_menu_add"
       android:title="@string/menu_addSite"
+      android:icon="@drawable/ic_add"
       app:showAsAction="always"/>
   <item
       android:id="@+id/item_settings"
-      android:icon="@android:drawable/ic_menu_manage"
       android:title="@string/menu_settingsSite"
-      app:showAsAction="always"/>
+      android:icon="@drawable/ic_settings"
+      app:showAsAction="ifRoom"/>
   <item
       android:id="@+id/item_logout"
       android:title="@string/menu_logout"
-      app:showAsAction="always" android:icon="@drawable/ic_menu_logout"/>
+      android:icon="@drawable/ic_menu_logout"
+      app:showAsAction="always"/>
+  <item
+      android:id="@+id/item_favorites"
+      android:title="@string/menu_favorites"
+      android:icon="@drawable/ic_favorites"
+      app:showAsAction="ifRoom"/>
 </menu>
