@@ -28,6 +28,10 @@ class SiteView : BaseView() {
       presenter.doChangeCheckBox()
     }
 
+    favoritesCheckBox.setOnClickListener{
+      presenter.doChangeFavoriteCheckBox()
+    }
+
     siteImage.setOnClickListener {
       presenter.doSelectImage()
     }
@@ -49,8 +53,8 @@ class SiteView : BaseView() {
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     menuInflater.inflate(R.menu.menu_site, menu)
     if (presenter.edit) {
-      menu.getItem(0).isVisible = true
-      menu.getItem(1).setTitle(R.string.menu_saveSite)
+      menu.getItem(1).isVisible = true
+      menu.getItem(2).setTitle(R.string.menu_saveSite)
     }
     return super.onCreateOptionsMenu(menu)
   }
@@ -60,9 +64,11 @@ class SiteView : BaseView() {
       R.id.item_save -> presenter.doAddorEditSite(
         siteTitle.text.toString(),
         siteDescription.text.toString(),
-        siteAdditionalInfo.text.toString()
+        siteAdditionalInfo.text.toString(),
+        ratingBar.rating
       )
       R.id.item_delete -> presenter.doDelete()
+      R.id.item_share -> presenter.doShareSite()
     }
     return super.onOptionsItemSelected(item)
   }
@@ -75,6 +81,8 @@ class SiteView : BaseView() {
     siteCheckBox.isChecked = site.visited
     siteDateVisited.text = site.date_visited
     siteAdditionalInfo.setText(site.additionalInfo)
+    ratingBar.rating = site.rating
+    favoritesCheckBox.isChecked = site.favorite
     if (site.images != "") {
       addImage.setText(R.string.site_changeImage)
     } else {

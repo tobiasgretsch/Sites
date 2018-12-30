@@ -6,7 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class SiteModel(
-  /*@PrimaryKey(autoGenerate = true)*/
   var id: Long = 0,
   var fbId: String = "",
   var name: String = "",
@@ -17,13 +16,15 @@ data class SiteModel(
   var zoom: Float = 16F,
   var visited: Boolean = false,
   var date_visited: String = "",
-  var additionalInfo: String = ""
+  var additionalInfo: String = "",
+  var rating: Float = 0F,
+  var favorite: Boolean = false
 ) : Parcelable
 
 @Parcelize
 data class Location(
-  var longtitue: Double = 0.0,
-  var latitute: Double = 0.0,
-  var zoom: Float = 0F,
+  var longtitue: Double = 49.0193773,
+  var latitute: Double = 12.0985301,
+  var zoom: Float = 16F,
   var titel: String = ""
 ) : Parcelable

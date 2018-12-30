@@ -10,23 +10,24 @@
     tools:context=".views.site.SiteView" android:padding="8dp">
 
   <TextView
-      android:layout_width="155dp"
+      android:layout_width="70dp"
       android:layout_height="wrap_content"
       android:ems="10"
       android:id="@+id/siteDateVisited"
-      android:hint="@string/site_hint_date" android:layout_marginEnd="8dp"
-      app:layout_constraintEnd_toEndOf="@+id/siteDescription"
       android:textSize="18sp"
-      android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/siteCheckBox"
-      android:clickable="false"/>
+      android:clickable="false"
+      app:layout_constraintTop_toTopOf="@+id/siteDescription"
+      app:layout_constraintBottom_toBottomOf="@+id/siteDescription" app:layout_constraintVertical_bias="0.39"
+      app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="@+id/siteCheckBox"
+      android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.0" android:layout_marginStart="8dp"/>
   <Button
       android:text="@string/site_set_Location"
       android:layout_width="160sp"
       android:layout_height="wrap_content"
       android:id="@+id/setLocation"
       android:backgroundTint="@color/colorPrimary"
-      app:layout_constraintEnd_toEndOf="@+id/siteDescription" android:layout_marginEnd="8dp"
-      app:layout_constraintTop_toTopOf="@+id/addImage"/>
+      app:layout_constraintTop_toTopOf="@+id/addImage" app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginEnd="8dp"/>
   <Button
       android:text="@string/site_add_Image"
       android:layout_width="160sp"
@@ -34,20 +35,21 @@
       android:id="@+id/addImage"
       style="@style/Widget.AppCompat.Button.Small" android:backgroundTint="@color/colorPrimary"
       android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/siteDescription"
-      android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/siteVisited"
       android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/setLocation"
-      app:layout_constraintHorizontal_bias="0.0"/>
+      app:layout_constraintHorizontal_bias="0.0"
+      android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/siteDescription"/>
   <EditText
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:inputType="text"
       android:ems="10"
       android:id="@+id/siteTitle"
       app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-      app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
-      app:layout_constraintTop_toTopOf="parent" android:hint="@string/site_name" android:layout_marginEnd="8dp"/>
+      android:layout_marginTop="8dp"
+      app:layout_constraintTop_toTopOf="parent" android:hint="@string/site_name" android:layout_marginEnd="8dp"
+      app:layout_constraintEnd_toStartOf="@+id/siteCheckBox"/>
   <EditText
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:inputType="text"
       android:ems="10"
@@ -55,27 +57,17 @@
       android:cursorVisible="true"
       android:textSize="14sp"
       android:layout_marginStart="8dp"
-      android:layout_marginEnd="8dp"
       android:layout_marginTop="8dp"
       android:hint="@string/site_description"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/siteTitle"
-      app:layout_constraintStart_toStartOf="parent"/>
-  <TextView
-      android:text="@string/site_first_visited"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintTop_toTopOf="@+id/siteDateVisited"
-      app:layout_constraintBottom_toBottomOf="@+id/siteDateVisited" android:textSize="18sp"
-      app:layout_constraintStart_toStartOf="@+id/siteDescription" android:layout_marginStart="16dp"
-      android:id="@+id/siteVisited" app:layout_constraintEnd_toStartOf="@+id/siteDateVisited"
-      android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.0"/>
+      app:layout_constraintStart_toStartOf="parent"
+      android:layout_marginEnd="16dp" app:layout_constraintEnd_toStartOf="@+id/siteDateVisited"/>
   <CheckBox
       android:text="@string/site_checkbox_visited"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/siteCheckBox" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-      app:layout_constraintTop_toBottomOf="@+id/siteDescription"
+      android:id="@+id/siteCheckBox"
+      app:layout_constraintTop_toTopOf="@+id/siteTitle" android:layout_marginTop="4dp"
       app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
   <ImageView
       android:layout_width="0dp"
@@ -89,7 +81,28 @@
       android:id="@+id/siteImage"
       android:contentDescription="@string/site_image"
       android:visibility="visible" android:layout_marginBottom="8dp"
-      app:layout_constraintBottom_toTopOf="@+id/siteAdditionalInfo" android:layout_marginTop="8dp"/>
+      app:layout_constraintBottom_toTopOf="@+id/ratingBar" android:layout_marginTop="8dp"/>
+  <RatingBar
+      android:id="@+id/ratingBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="3dp"
+      android:layout_marginStart="8dp"
+      android:stepSize=".5"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/siteImage"
+      android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/favoritesCheckBox"/>
+  <CheckBox
+      android:text="Add to favorites"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" tools:layout_editor_absoluteY="403dp"
+      android:id="@+id/favoritesCheckBox" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginStart="8dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/siteAdditionalInfo"
+      app:layout_constraintTop_toBottomOf="@id/ratingBar"
+      app:layout_constraintHorizontal_bias="0.502"/>
   <EditText
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -97,8 +110,9 @@
       android:ems="10"
       android:id="@+id/siteAdditionalInfo"
       app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-      app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+      app:layout_constraintEnd_toEndOf="parent"
       android:hint="@string/site_additionalInfo" android:layout_marginEnd="16dp"
-      app:layout_constraintTop_toBottomOf="@+id/siteImage" android:layout_marginBottom="8dp"
-      app:layout_constraintBottom_toBottomOf="parent"/>
+      android:layout_marginBottom="4dp"
+      app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+      app:layout_constraintTop_toBottomOf="@+id/favoritesCheckBox"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

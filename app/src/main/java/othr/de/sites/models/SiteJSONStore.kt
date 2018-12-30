@@ -20,7 +20,7 @@ fun generateRandomId(): Long {
 
 class SiteJSONStore : SiteStore, AnkoLogger {
   override fun clear() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    //
   }
 
   val context: Context

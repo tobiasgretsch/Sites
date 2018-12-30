@@ -2,6 +2,10 @@ package othr.de.sites.models.firebase
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
+import android.widget.Toast
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -51,6 +55,8 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
       foundSite.visited = site.visited
       foundSite.description = site.description
       foundSite.additionalInfo = site.additionalInfo
+      foundSite.rating = site.rating
+      foundSite.favorite = site.favorite
     }
 
     db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
@@ -86,6 +92,18 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
   }
 
   override fun delete(site: SiteModel) {
+    //TODO DELETE PICTURES FROM STORAGE
+    if(site.images == "_") {
+
+      val imageName =File(site.images).nameWithoutExtension
+      println(imageName)
+
+      st.child(userId + '/' + imageName).delete().addOnSuccessListener {
+        //
+      }.addOnFailureListener {
+        Log.d("StorageFailure","Image is not deleted! " + it.message)
+      }
+    }
     db.child("users").child(userId).child("sites").child(site.fbId).removeValue()
     sites.remove(site)
   }
@@ -107,7 +125,7 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
     userId = FirebaseAuth.getInstance().currentUser!!.uid
     db = FirebaseDatabase.getInstance().reference
     st = FirebaseStorage.getInstance().reference
-    sites.clear()
+    clear()
     db.child("users").child(userId).child("sites").addListenerForSingleValueEvent(valueEventListener)
   }
 }

@@ -2,6 +2,7 @@ package othr.de.sites.views.site
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -62,7 +63,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
     }
   }
 
-  fun doAddorEditSite(name: String, description: String, additionalInfo: String) {
+  fun doAddorEditSite(name: String, description: String, additionalInfo: String, rating: Float) {
     if (name.isEmpty()) {
       view?.toast(R.string.site_emptyTitleToast)
     } else {
@@ -70,6 +71,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
       site.description = description
       site.visited = view!!.siteCheckBox.isChecked
       site.additionalInfo = additionalInfo
+      site.rating = rating
       if (edit) {
         app.sites.update(site)
       } else {
@@ -92,7 +94,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
     if (view!!.siteCheckBox.isChecked) {
       view!!.siteCheckBox.isEnabled = false
     }
-    val now = SimpleDateFormat("d MMM yyyy, hh:mm", Locale.GERMAN).format(Date())
+    val now = SimpleDateFormat("d MMM", Locale.GERMAN).format(Date())
     view!!.siteDateVisited.text = now
 
     site.date_visited = now
@@ -106,9 +108,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
   fun doShowMap() {
     doSetCurrentLocation()
     view?.navigateTo(
-      VIEW.LOCATION,
-      LOCATION_REQUEST,
-      "location",
+      VIEW.LOCATION, LOCATION_REQUEST, "location",
       Location(site.longitude, site.latitude, site.zoom, site.name)
     )
   }
@@ -163,5 +163,19 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
       //FIXME bei site Liste mit 4 Strings? Wie dann die [when] Bedingung setzen wenn die size immer 4 ist?
       //
     }
+  }
+
+  fun doChangeFavoriteCheckBox() {
+    site.favorite = view!!.favoritesCheckBox.isChecked
+  }
+
+  fun doShareSite() {
+    val shareIntent = Intent()
+    shareIntent.action = Intent.ACTION_SEND
+    shareIntent.putExtra(Intent.EXTRA_TEXT, "Awesome Site")
+    //TODO some usefull stuff here
+    shareIntent.type = "text/plain"
+
+    view!!.startActivity(Intent.createChooser(shareIntent, "Share Site to:"))
   }
 }

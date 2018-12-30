@@ -43,6 +43,7 @@ class SiteListView : BaseView(), SiteListener {
       R.id.item_settings -> presenter.doOpenSettings()
       R.id.item_logout -> presenter.doLogout()
       R.id.item_map -> presenter.doShowMap()
+      R.id.item_favorites -> presenter.doShowFavorites()
     }
     return super.onOptionsItemSelected(item)
   }
