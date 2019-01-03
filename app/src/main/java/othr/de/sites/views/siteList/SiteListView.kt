@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_site_list_view.*
 import othr.de.sites.R
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BaseView
+
 
 class SiteListView : BaseView(), SiteListener {
 
@@ -21,8 +23,9 @@ class SiteListView : BaseView(), SiteListener {
     presenter = initPresenter(SiteListPresenter(this)) as SiteListPresenter
 
     val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+
     recyclerView.layoutManager = layoutManager
-    presenter.loadSites();
+    presenter.loadSites()
 
   }
 
