@@ -7,8 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
-import org.jetbrains.anko.startActivityForResult
-import othr.de.sites.R
 import java.io.IOException
 
 fun showImagePicker(parent: Activity, id: Int) {
@@ -16,7 +14,7 @@ fun showImagePicker(parent: Activity, id: Int) {
   intent.type = "image/*"
   intent.action = Intent.ACTION_OPEN_DOCUMENT
   intent.addCategory(Intent.CATEGORY_OPENABLE)
-  val chooser = Intent.createChooser(intent, "in @Strings festlegen!!!")
+  val chooser = Intent.createChooser(intent, "Choose Image")
   parent.startActivityForResult(chooser, id)
 }
 

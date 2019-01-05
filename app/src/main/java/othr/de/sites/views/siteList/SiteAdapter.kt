@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.card_site.view.*
 import othr.de.sites.R
-import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 
 interface SiteListener {
@@ -34,12 +33,12 @@ class SiteAdapter constructor(
   class MainHolder constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     fun bind(site: SiteModel, listener: SiteListener) {
-      Glide.with(itemView.context).load(site.images).into(itemView.listIcon)
-      itemView.siteLat.text = "%.4f".format(site.latitude)
-      itemView.siteLng.text = "%.4f".format(site.longitude)
+      if(site.images.size > 0) Glide.with(itemView.context).load(site.images[0]).into(itemView.listIcon)
+      itemView.siteLat.text = String.format("%.4f", site.latitude)
+      itemView.siteLng.text = String.format("%.4f", site.longitude)
       itemView.siteListTitle.text = site.name
       itemView.site_checkBox.isChecked = site.visited
-      if(site.favorite) {
+      if (site.favorite) {
         itemView.favorite_checkBox.visibility = View.VISIBLE
         itemView.favorite_checkBox.isChecked = site.favorite
       } else {

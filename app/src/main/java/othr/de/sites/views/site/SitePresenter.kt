@@ -2,7 +2,6 @@ package othr.de.sites.views.site
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -101,8 +100,11 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
   }
 
   fun doSelectImage() {
-    //TODO 4 Bilder auswählen! Wie die Bilder auf der SiteView anzeigen?
-    showImagePicker(view!!, IMAGE_REQUEST)
+    if (site.images.size >= 4) {
+      view!!.toast("You can only save 4 Pictures, Hold on an Image to delete an Image")
+    } else {
+      showImagePicker(view!!, IMAGE_REQUEST)
+    }
   }
 
   fun doShowMap() {
@@ -133,9 +135,15 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
   override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
     when (requestCode) {
       IMAGE_REQUEST -> {
-        site.images = data.data.toString()
-        view!!.siteImage.setImageBitmap(readImage(view!!, resultCode, data))
-        view!!.addImage.setText(R.string.site_changeImage)
+        if (!site.images.contains(data.data.toString())) {
+          site.images.add(data.data.toString())
+        }
+        //view!!.toast(site.images.toString())
+        //view!!.recyclerViewImages.adapter = ImagesAdapter(site.images)
+        //view!!.recyclerViewImages.adapter?.notifyDataSetChanged()
+        //view!!.siteImage.setImageBitmap(readImage(view!!, resultCode, data))
+        //view!!.addImage.setText(R.string.site_changeImage)
+        view!!.showSite(site)
       }
       LOCATION_REQUEST -> {
         val location = data.extras.getParcelable<Location>("location")
@@ -144,24 +152,6 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
         site.zoom = location.zoom
 
       }
-    }
-  }
-
-  fun doSetImageEmtyString(): Boolean {
-    site.images = ""
-    view!!.siteImage.setImageBitmap(readImageFromPath(view!!, site.images))
-    view!!.siteImage.setImageResource(R.drawable.splashscreen) //TODO hier ein plus Ican rein setzen
-    return true
-  }
-
-  fun doManageImages() {
-    when (site.images) { //TODO site.images.size
-      //TODO Wenn Kein Bild da Icon bei [0] setzen
-      //bei 1 -> Bild setzen auf [0] und [1] anzeigen mit Plus
-      //bei 2 -> Bild setzen auf [1] und [2] anzeigen mit Plus usw
-      //Funktion durchlaufen die überprüft ob zwischen den Bildern leere Strings sind
-      //FIXME bei site Liste mit 4 Strings? Wie dann die [when] Bedingung setzen wenn die size immer 4 ist?
-      //
     }
   }
 
@@ -177,5 +167,10 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
     shareIntent.type = "text/plain"
 
     view!!.startActivity(Intent.createChooser(shareIntent, "Share Site to:"))
+  }
+
+  fun doDeleteImage(image: String) {
+    site.images.remove(image)
+    view!!.showSite(site)
   }
 }

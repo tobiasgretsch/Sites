@@ -33,7 +33,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.MAP -> intent = Intent(this, SiteMapsView::class.java)
       VIEW.SETTINGS -> intent = Intent(this, SettingsView::class.java)
       VIEW.SITE -> intent = Intent(this, SiteView::class.java)
-      VIEW.FAVORITES -> intent = Intent(this,FavoritesView::class.java)
+      VIEW.FAVORITES -> intent = Intent(this, FavoritesView::class.java)
     }
     if (key != "") {
       intent.putExtra(key, value)

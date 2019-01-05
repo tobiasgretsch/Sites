@@ -14,7 +14,6 @@ class LoginView : BaseView() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login_view)
-    //init(toolbar,false)
 
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 

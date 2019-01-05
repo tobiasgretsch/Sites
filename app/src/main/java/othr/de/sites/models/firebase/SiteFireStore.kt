@@ -38,7 +38,7 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
     site.fbId = key!!
     sites.add(site)
     db.child("users").child(userId).child("sites").child(key).setValue(site)
-    if((site.images.length) > 0 && (site.images[0] != 'h')) {
+    if ((site.images.size) > 0 && (site.images[0] != "h")) {
       updateImage(site)
     }
   }
@@ -60,48 +60,51 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
     }
 
     db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
-    if((site.images.length) > 0 && (site.images[0] != 'h')) {
+    if ((site.images.size) > 0 && (site.images[0] != "h")) {
       updateImage(site)
     }
   }
 
   fun updateImage(site: SiteModel) {
-    if(site.images != "") {
-      val fileName = File(site.images)
-      val imageName = fileName.name
+    val newImages = ArrayList<String>()
+    if (!site.images.isEmpty()) {
+      site.images.forEach {
+        val fileName = File(it)
+        val imageName = fileName.name
 
-      val imageRef = st.child(userId + '/' + imageName)
-      val baos = ByteArrayOutputStream()
-      val bitmap = readImageFromPath(context, site.images)
+        val imageRef = st.child(userId + '/' + imageName)
+        val baos = ByteArrayOutputStream()
+        val bitmap = readImageFromPath(context, it)
 
-      bitmap?.let {
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100,baos)
-        val data = baos.toByteArray()
-        val uploadTask = imageRef.putBytes(data)
-        uploadTask.addOnFailureListener {
-          println(it.message)
-        }.addOnSuccessListener { taskSnapshot ->
-          taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-            site.images = it.toString()
-            db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
+        bitmap?.let {
+          bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+          val data = baos.toByteArray()
+          val uploadTask = imageRef.putBytes(data)
+          uploadTask.addOnFailureListener {
+            println(it.message)
+          }.addOnSuccessListener { taskSnapshot ->
+            taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+              newImages.add(it.toString())
+              db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
+            }
           }
         }
       }
-
+      site.images = newImages
     }
   }
 
   override fun delete(site: SiteModel) {
     //TODO DELETE PICTURES FROM STORAGE
-    if(site.images == "_") {
+    if (site.images[0] == "_") {
 
-      val imageName =File(site.images).nameWithoutExtension
+      val imageName = File(site.images[0]).nameWithoutExtension
       println(imageName)
 
       st.child(userId + '/' + imageName).delete().addOnSuccessListener {
         //
       }.addOnFailureListener {
-        Log.d("StorageFailure","Image is not deleted! " + it.message)
+        Log.d("StorageFailure", "Image is not deleted! " + it.message)
       }
     }
     db.child("users").child(userId).child("sites").child(site.fbId).removeValue()

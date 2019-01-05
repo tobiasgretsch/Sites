@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
 import othr.de.sites.R
 
 import kotlinx.android.synthetic.main.activity_site_view.*
@@ -12,7 +13,7 @@ import kotlinx.android.synthetic.main.content_site_view.*
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BaseView
 
-class SiteView : BaseView() {
+class SiteView : BaseView(), ImageListener {
 
   private lateinit var presenter: SitePresenter
 
@@ -24,20 +25,14 @@ class SiteView : BaseView() {
 
     presenter = initPresenter(SitePresenter(this)) as SitePresenter
 
+    recyclerViewImages.layoutManager = LinearLayoutManager(this, OrientationHelper.HORIZONTAL, false)
+
     siteCheckBox.setOnClickListener {
       presenter.doChangeCheckBox()
     }
 
-    favoritesCheckBox.setOnClickListener{
+    favoritesCheckBox.setOnClickListener {
       presenter.doChangeFavoriteCheckBox()
-    }
-
-    siteImage.setOnClickListener {
-      presenter.doSelectImage()
-    }
-
-    siteImage.setOnLongClickListener {
-      presenter.doSetImageEmtyString()
     }
 
     addImage.setOnClickListener {
@@ -76,18 +71,26 @@ class SiteView : BaseView() {
   override fun showSite(site: SiteModel) {
     siteTitle.setText(site.name)
     siteDescription.setText(site.description)
-    Glide.with(this).load(site.images).into(siteImage)
+    recyclerViewImages.adapter = ImagesAdapter(site.images, this)
+    recyclerViewImages.adapter?.notifyDataSetChanged()
+    //Glide.with(this).load(site.images).into(siteImage)
     //siteImage.setImageBitmap(readImageFromPath(this, site.images))
     siteCheckBox.isChecked = site.visited
     siteDateVisited.text = site.date_visited
     siteAdditionalInfo.setText(site.additionalInfo)
     ratingBar.rating = site.rating
     favoritesCheckBox.isChecked = site.favorite
-    if (site.images != "") {
+    if (site.images.size >= 4) {
+      addImage.isEnabled = false
       addImage.setText(R.string.site_changeImage)
     } else {
-      //TODO set plus ICON Recource here!
+      addImage.isEnabled = true
+      addImage.setText(R.string.site_add_Image)
     }
+  }
+
+  override fun onImageHold(image: String) {
+    presenter.doDeleteImage(image)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -95,6 +98,7 @@ class SiteView : BaseView() {
     if (data != null) {
       presenter.doActivityResult(requestCode, resultCode, data)
     }
+
   }
 
   //override fun onResume() {

@@ -5,7 +5,7 @@ import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView
 import othr.de.sites.views.base.VIEW
 
-class FavoritesPresenter(view: BaseView): BasePresenter(view) {
+class FavoritesPresenter(view: BaseView) : BasePresenter(view) {
 
   fun loadSites() {
     val filteredSites = app.sites.findAll().filter { it.favorite }

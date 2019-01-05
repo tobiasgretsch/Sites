@@ -10,7 +10,7 @@ data class SiteModel(
   var fbId: String = "",
   var name: String = "",
   var description: String = "",
-  var images: String = "",
+  var images: ArrayList<String> = ArrayList(),
   var latitude: Double = 49.0193773,
   var longitude: Double = 12.0985301,
   var zoom: Float = 16F,

@@ -2,10 +2,8 @@ package othr.de.sites.views.siteList
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_site_list_view.*
 import othr.de.sites.R
 import othr.de.sites.models.SiteModel
@@ -42,7 +40,7 @@ class SiteListView : BaseView(), SiteListener {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
-      R.id.item_up -> presenter.doSmoothScroll(recyclerView)
+      //R.id.item_up -> presenter.doSmoothScroll(recyclerView)
       R.id.item_settings -> presenter.doOpenSettings()
       R.id.item_logout -> presenter.doLogout()
       R.id.item_map -> presenter.doShowMap()

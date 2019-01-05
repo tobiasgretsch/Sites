@@ -1,4 +1,4 @@
-package othr.de.sites.models
+package othr.de.sites.models.json
 
 import android.content.Context
 import com.google.gson.Gson
@@ -8,6 +8,8 @@ import org.jetbrains.anko.AnkoLogger
 import othr.de.sites.helpers.exists
 import othr.de.sites.helpers.read
 import othr.de.sites.helpers.write
+import othr.de.sites.models.SiteModel
+import othr.de.sites.models.SiteStore
 import java.util.*
 
 val JSON_FILE = "sites.json"

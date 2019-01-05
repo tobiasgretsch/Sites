@@ -4,7 +4,7 @@ import kotlinx.android.synthetic.main.activity_settings_view.*
 import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView
 
-class SettingsPresenter(view: BaseView): BasePresenter(view) {
+class SettingsPresenter(view: BaseView) : BasePresenter(view) {
 
   val sites = app.sites.findAll()
 
@@ -20,9 +20,4 @@ class SettingsPresenter(view: BaseView): BasePresenter(view) {
   fun doShowNumberOfSites() {
     view!!.settings_number_of_sites.text = sites.size.toString()
   }
-
-  fun doFinish() {
-    view?.finish()
-  }
-
 }

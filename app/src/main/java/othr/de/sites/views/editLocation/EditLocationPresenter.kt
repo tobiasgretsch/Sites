@@ -1,10 +1,7 @@
 package othr.de.sites.views.editLocation
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng

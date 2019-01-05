@@ -30,15 +30,15 @@ class SiteMapsPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doUpdateCardView(marker: Marker) {
-    val tag = marker.tag as Long
-    val site = app.sites.findById(tag)
+    val site = marker.tag as SiteModel
+    //val site = app.sites.findById(tag)
     setCardViewValues(site)
   }
 
   fun setCardViewValues(site: SiteModel?) {
     view!!.currentTitle.text = site!!.name
     view!!.currentDescription.text = site.description
-    Glide.with(view!!).load(site.images).into(view!!.imageViewMap)
+    if (!site.images.isEmpty()) Glide.with(view!!).load(site.images[0]).into(view!!.imageViewMap)
     //view!!.imageViewMap.setImageBitmap(readImageFromPath(view!!, site.images))
   }
 }
