@@ -30,12 +30,6 @@ class SiteListPresenter(view: BaseView) : BasePresenter(view) {
     view?.navigateTo(VIEW.MAP)
   }
 
-  fun doSmoothScroll(recyclerView: androidx.recyclerview.widget.RecyclerView) {
-    if (app.sites.findAll().isNotEmpty()) {
-      recyclerView.smoothScrollToPosition(0)
-    }
-  }
-
   fun loadSites() {
     view?.showSites(app.sites.findAll())
   }

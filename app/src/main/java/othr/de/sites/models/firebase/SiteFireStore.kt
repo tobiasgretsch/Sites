@@ -95,9 +95,8 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
   }
 
   override fun delete(site: SiteModel) {
-    //TODO DELETE PICTURES FROM STORAGE
-    if (site.images[0] == "_") {
-
+    /*if (site.images[0] == "") {
+       //Search through all Sites if the picture is in use from other Sites?
       val imageName = File(site.images[0]).nameWithoutExtension
       println(imageName)
 
@@ -106,7 +105,7 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
       }.addOnFailureListener {
         Log.d("StorageFailure", "Image is not deleted! " + it.message)
       }
-    }
+    }*/
     db.child("users").child(userId).child("sites").child(site.fbId).removeValue()
     sites.remove(site)
   }

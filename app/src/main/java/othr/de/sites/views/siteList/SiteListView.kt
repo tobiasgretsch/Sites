@@ -40,7 +40,6 @@ class SiteListView : BaseView(), SiteListener {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> presenter.doAddSite()
-      //R.id.item_up -> presenter.doSmoothScroll(recyclerView)
       R.id.item_settings -> presenter.doOpenSettings()
       R.id.item_logout -> presenter.doLogout()
       R.id.item_map -> presenter.doShowMap()

@@ -50,5 +50,8 @@ class LoginPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
       }
       view?.hideProgress()
     }
+
+    //TODO neue Liste von Default Sites dem User zuordnen / kopieren
+
   }
 }

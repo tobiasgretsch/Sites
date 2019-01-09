@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.content_site_view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import othr.de.sites.R
+import othr.de.sites.R.id.recyclerViewImages
 import othr.de.sites.helpers.*
 import othr.de.sites.models.Location
 import othr.de.sites.models.SiteModel
@@ -30,7 +31,6 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
 
   var site = SiteModel()
   var edit = false
-  //private var location = Location(40.0, 0.0, 10f)
 
   init {
     if (view.intent.hasExtra("site_edit")) {
@@ -59,6 +59,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
     locationService.lastLocation.addOnSuccessListener {
       site.latitude = it.latitude
       site.longitude = it.longitude
+      println("Position auf lastLocation gesetzt")
     }
   }
 
@@ -101,7 +102,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
 
   fun doSelectImage() {
     if (site.images.size >= 4) {
-      view!!.toast("You can only save 4 Pictures, Hold on an Image to delete an Image")
+      view!!.toast(R.string.site_changeImage)
     } else {
       showImagePicker(view!!, IMAGE_REQUEST)
     }
@@ -138,12 +139,12 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
         if (!site.images.contains(data.data.toString())) {
           site.images.add(data.data.toString())
         }
-        //view!!.toast(site.images.toString())
-        //view!!.recyclerViewImages.adapter = ImagesAdapter(site.images)
-        //view!!.recyclerViewImages.adapter?.notifyDataSetChanged()
+
         //view!!.siteImage.setImageBitmap(readImage(view!!, resultCode, data))
         //view!!.addImage.setText(R.string.site_changeImage)
-        view!!.showSite(site)
+
+        view!!.recyclerViewImages.adapter = ImagesAdapter(site.images, view!! as SiteView)
+        view!!.recyclerViewImages.adapter?.notifyDataSetChanged()
       }
       LOCATION_REQUEST -> {
         val location = data.extras.getParcelable<Location>("location")
@@ -162,8 +163,8 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
   fun doShareSite() {
     val shareIntent = Intent()
     shareIntent.action = Intent.ACTION_SEND
-    shareIntent.putExtra(Intent.EXTRA_TEXT, "Awesome Site")
-    //TODO some usefull stuff here
+    shareIntent.putExtra(Intent.EXTRA_TEXT, site.toString())
+    println(site.toString())
     shareIntent.type = "text/plain"
 
     view!!.startActivity(Intent.createChooser(shareIntent, "Share Site to:"))
@@ -171,6 +172,9 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
 
   fun doDeleteImage(image: String) {
     site.images.remove(image)
-    view!!.showSite(site)
+
+    view!!.recyclerViewImages.adapter = ImagesAdapter(site.images, view!! as SiteView)
+    view!!.recyclerViewImages.adapter?.notifyDataSetChanged()
+    //view!!.showSite(site)
   }
 }

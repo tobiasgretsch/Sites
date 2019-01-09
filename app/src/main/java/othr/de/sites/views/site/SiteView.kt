@@ -71,15 +71,17 @@ class SiteView : BaseView(), ImageListener {
   override fun showSite(site: SiteModel) {
     siteTitle.setText(site.name)
     siteDescription.setText(site.description)
+
     recyclerViewImages.adapter = ImagesAdapter(site.images, this)
     recyclerViewImages.adapter?.notifyDataSetChanged()
     //Glide.with(this).load(site.images).into(siteImage)
-    //siteImage.setImageBitmap(readImageFromPath(this, site.images))
+
     siteCheckBox.isChecked = site.visited
     siteDateVisited.text = site.date_visited
     siteAdditionalInfo.setText(site.additionalInfo)
     ratingBar.rating = site.rating
     favoritesCheckBox.isChecked = site.favorite
+
     if (site.images.size >= 4) {
       addImage.isEnabled = false
       addImage.setText(R.string.site_changeImage)
@@ -101,13 +103,13 @@ class SiteView : BaseView(), ImageListener {
 
   }
 
-  //override fun onResume() {
-  //  super.onResume()
-  //  presenter.doRestartLocationUpdates()
-  //}
-
   override fun onBackPressed() {
     presenter.doCancel()
     super.onBackPressed()
   }
+
+  //override fun onResume() {
+  //  super.onResume()
+  //  presenter.doRestartLocationUpdates()
+  //}
 }
