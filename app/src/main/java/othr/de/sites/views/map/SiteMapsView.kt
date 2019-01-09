@@ -3,7 +3,6 @@ package othr.de.sites.views.map
 import android.os.Bundle
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
-import kotlinx.android.synthetic.main.activity_site_maps.*
 import kotlinx.android.synthetic.main.content_site_maps.*
 import othr.de.sites.R
 import othr.de.sites.views.base.BaseView
@@ -20,7 +19,7 @@ class SiteMapsView : BaseView(), GoogleMap.OnMarkerClickListener {
 
     presenter = initPresenter(SiteMapsPresenter(this)) as SiteMapsPresenter
 
-    mapView.onCreate(savedInstanceState);
+    mapView.onCreate(savedInstanceState)
     mapView.getMapAsync {
       map = it
       map.setOnMarkerClickListener(this)

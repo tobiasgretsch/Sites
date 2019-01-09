@@ -25,8 +25,7 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
   }
 
   override fun findById(id: Long): SiteModel? {
-    val foundSite: SiteModel? = sites.find { p -> p.id == id }
-    return foundSite
+    return sites.find { p -> p.id == id }
   }
 
   override fun create(site: SiteModel) {
@@ -61,8 +60,7 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
     }
   }
 
-  fun updateImage(site: SiteModel) {
-    val newImages = ArrayList<String>()
+  private fun updateImage(site: SiteModel) {
     if (!site.images.isEmpty()) {
       var counter = 0
       site.images.forEach { image ->
@@ -81,15 +79,12 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
             println(it.message)
           }.addOnSuccessListener { taskSnapshot ->
             taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-              println("na wo sind wir denn hier geanded " + it.toString())
               site.images[counter++] = it.toString()
             }
           }
         }
       }
-
       db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
-      println("after: " + site.images.toString())
     }
   }
 

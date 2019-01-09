@@ -7,7 +7,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.content_site_maps.*
-import othr.de.sites.helpers.readImageFromPath
 import othr.de.sites.models.SiteModel
 import othr.de.sites.views.base.BasePresenter
 import othr.de.sites.views.base.BaseView

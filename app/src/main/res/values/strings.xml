@@ -1,25 +1,27 @@
 <resources>
   <string name="app_name">Sites</string>
+
   <string name="site_name">Name</string>
   <string name="site_description">Description</string>
   <string name="site_set_Location">Set Location</string>
+  <string name="site_add_Image">Add Image</string>
+  <string name="site_hint_date">Not visited yet</string>
   <string name="site_checkbox_visited">Visited</string>
   <string name="site_first_visited">First Visited :</string>
-  <string name="site_hint_date">Not visited yet</string>
-  <string name="site_add_Image">Add Image</string>
-  <string name="site_changeImage">Reached max Images, Hold Image to Delete</string>
   <string name="site_image">Site Image</string>
+  <string name="site_changeImage">Reached max Images, Hold Image to Delete</string>
   <string name="site_additionalInfo">Additional Information</string>
   <string name="site_emptyTitleToast">Please enter a title for the site</string>
+  <string name="site_checkbox_favorite">Add to favorites</string>
 
-  <string name="title_activity_site_view">Site</string>
-  <string name="title_activity_siteList">Sites</string>
-  <string name="title_activity_maps">Set Location</string>
-  <string name="title_activity_site_maps">Find your Sites</string>
-  <string name="title_activity_settings">Settings</string>
-  <string name="title_activity_login">Login</string>
   <string name="title_splashscreen">Sites</string>
+  <string name="title_activity_login">Login</string>
+  <string name="title_activity_siteList">Sites</string>
   <string name="title_activity_favorites">Favorites</string>
+  <string name="title_activity_site_view">Site</string>
+  <string name="title_activity_site_maps">Find your Sites</string>
+  <string name="title_activity_maps">Set Location</string>
+  <string name="title_activity_settings">Settings</string>
 
   <string name="login_btnLogin">Login</string>
   <string name="login_btnSignUp">Signup</string>
@@ -27,14 +29,10 @@
 
   <string name="menu_addSite">Add</string>
   <string name="menu_deleteSite">Delete</string>
-  <string name="menu_logout">Logout</string>
-  <string name="menu_back">Back</string>
-  <string name="menu_saveSite">Save</string>
-  <string name="menu_upSite">Up</string>
-  <string name="menu_settingsSite">Settings</string>
-  <string name="menu_favorites">Favorites</string>
-  <string name="menu_map">Map</string>
   <string name="menu_shareSite">Share</string>
-  <string name="site_checkbox_favorite">Add to favorites</string>
-  <string name="menu_search">Search</string>
+  <string name="menu_saveSite">Save</string>
+  <string name="menu_map">Map</string>
+  <string name="menu_favorites">Favorites</string>
+  <string name="menu_settingsSite">Settings</string>
+  <string name="menu_logout">Logout</string>
 </resources>

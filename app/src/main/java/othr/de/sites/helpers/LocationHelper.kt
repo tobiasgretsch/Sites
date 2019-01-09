@@ -11,28 +11,28 @@ import com.google.android.gms.location.LocationRequest
 val REQUEST_PERMISSION_REQUEST_CODE = 34
 
 fun checkLocationPermissions(activity: Activity): Boolean {
-  if (ActivityCompat.checkSelfPermission(
+  return if (ActivityCompat.checkSelfPermission(
       activity,
       Manifest.permission.ACCESS_FINE_LOCATION
     ) == PackageManager.PERMISSION_GRANTED
   ) {
-    return true
+    true
   } else {
     ActivityCompat.requestPermissions(
       activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
       REQUEST_PERMISSION_REQUEST_CODE
     )
-    return false
+    false
   }
 }
 
 fun isPermissionGranted(code: Int, grantResults: IntArray): Boolean {
-  var permissioinGranted = false;
+  var permissioinGranted = false
   if (code == REQUEST_PERMISSION_REQUEST_CODE) {
     when {
       grantResults.isEmpty() -> Log.i("Location", "User interation was cancelled")
       (grantResults[0] == PackageManager.PERMISSION_GRANTED) -> {
-        permissioinGranted = true;
+        permissioinGranted = true
         Log.i("Location", "Permission Granted.")
       }
       else -> Log.i("Location", "Permission Denied")
@@ -44,10 +44,9 @@ fun isPermissionGranted(code: Int, grantResults: IntArray): Boolean {
 
 @SuppressLint("RestrictedApi")
 fun createDefaultLocationRequest(): LocationRequest {
-  val locationRequest = LocationRequest().apply {
+  return LocationRequest().apply {
     interval = 10000
     fastestInterval = 5000
     priority = LocationRequest.PRIORITY_HIGH_ACCURACY
   }
-  return locationRequest
 }

@@ -45,7 +45,7 @@ class SiteJSONStore : SiteStore, AnkoLogger {
 
   override fun update(site: SiteModel) {
     val siteList = findAll()
-    var foundSite: SiteModel? = siteList.find { s -> s.id == site.id }
+    val foundSite: SiteModel? = siteList.find { s -> s.id == site.id }
 
     if (foundSite != null) {
       foundSite.images = site.images
@@ -65,8 +65,7 @@ class SiteJSONStore : SiteStore, AnkoLogger {
   }
 
   override fun findById(id: Long): SiteModel? {
-    val foundSite: SiteModel? = sites.find { s -> s.id == id }
-    return foundSite
+    return sites.find { s -> s.id == id }
   }
 
   private fun serialize() {

@@ -58,7 +58,6 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
     locationService.lastLocation.addOnSuccessListener {
       site.latitude = it.latitude
       site.longitude = it.longitude
-      println("Position auf lastLocation gesetzt")
     }
   }
 
@@ -120,7 +119,7 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
   fun doRestartLocationUpdates() {
     val locationCallback = object : LocationCallback() {
       override fun onLocationResult(locationResult: LocationResult?) {
-        if (locationResult != null && locationResult.locations != null) {
+        if (locationResult != null) {
           val l = locationResult.locations.last()
           site.latitude = l.latitude
           site.longitude = l.longitude
@@ -138,10 +137,6 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
         if (!site.images.contains(data.data.toString())) {
           site.images.add(data.data.toString())
         }
-
-        //view!!.siteImage.setImageBitmap(readImage(view!!, resultCode, data))
-        //view!!.addImage.setText(R.string.site_changeImage)
-
         view!!.recyclerViewImages.adapter = ImagesAdapter(site.images, view!! as SiteView)
         view!!.recyclerViewImages.adapter?.notifyDataSetChanged()
       }
