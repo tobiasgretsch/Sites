@@ -2,10 +2,6 @@ package othr.de.sites.models.firebase
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
-import android.widget.Toast
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -38,7 +34,7 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
     site.fbId = key!!
     sites.add(site)
     db.child("users").child(userId).child("sites").child(key).setValue(site)
-    if ((site.images.size) > 0 && (site.images[0] != "h")) {
+    if ((site.images.size) > 0) {
       updateImage(site)
     }
   }
@@ -68,15 +64,16 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
   fun updateImage(site: SiteModel) {
     val newImages = ArrayList<String>()
     if (!site.images.isEmpty()) {
-      site.images.forEach {
-        val fileName = File(it)
+      var counter = 0
+      site.images.forEach { image ->
+        val fileName = File(image)
         val imageName = fileName.name
 
         val imageRef = st.child(userId + '/' + imageName)
         val baos = ByteArrayOutputStream()
-        val bitmap = readImageFromPath(context, it)
+        val bitmap = readImageFromPath(context, image)
 
-        bitmap?.let {
+        bitmap?.let { it ->
           bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
           val data = baos.toByteArray()
           val uploadTask = imageRef.putBytes(data)
@@ -84,15 +81,18 @@ class SiteFireStore(val context: Context) : SiteStore, AnkoLogger {
             println(it.message)
           }.addOnSuccessListener { taskSnapshot ->
             taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
-              newImages.add(it.toString())
-              db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
+              println("na wo sind wir denn hier geanded " + it.toString())
+              site.images[counter++] = it.toString()
             }
           }
         }
       }
-      site.images = newImages
+
+      db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
+      println("after: " + site.images.toString())
     }
   }
+
 
   override fun delete(site: SiteModel) {
     /*if (site.images[0] == "") {

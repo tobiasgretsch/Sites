@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.content_site_view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 import othr.de.sites.R
-import othr.de.sites.R.id.recyclerViewImages
 import othr.de.sites.helpers.*
 import othr.de.sites.models.Location
 import othr.de.sites.models.SiteModel
@@ -175,6 +174,5 @@ class SitePresenter(view: BaseView) : AnkoLogger, BasePresenter(view) {
 
     view!!.recyclerViewImages.adapter = ImagesAdapter(site.images, view!! as SiteView)
     view!!.recyclerViewImages.adapter?.notifyDataSetChanged()
-    //view!!.showSite(site)
   }
 }

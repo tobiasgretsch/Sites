@@ -34,7 +34,7 @@ class SiteAdapter constructor(
 
     fun bind(site: SiteModel, listener: SiteListener) {
       itemView.siteDescription.text = site.description
-      itemView.siteLocation.text = String.format("(%.4f,%.4f)", site.latitude,site.longitude)
+      itemView.siteLocation.text = String.format("(%.4f,%.4f)", site.latitude, site.longitude)
       itemView.siteListTitle.text = site.name
       itemView.site_checkBox.isChecked = site.visited
       if (site.favorite) {
@@ -44,7 +44,8 @@ class SiteAdapter constructor(
         itemView.favorite_checkBox.visibility = View.INVISIBLE
       }
       itemView.setOnClickListener { listener.onSiteClick(site) }
-      if(site.images.size > 0) Glide.with(itemView.context).load(site.images[0]).into(itemView.listIcon)
+
+      if (site.images.size > 0) Glide.with(itemView.context).load(site.images[0]).into(itemView.listIcon)
     }
   }
 }

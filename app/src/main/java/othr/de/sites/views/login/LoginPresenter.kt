@@ -47,11 +47,9 @@ class LoginPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
         view?.navigateTo(VIEW.LIST)
       } else {
         view?.toast("Sign up Failed: ${task.exception?.message}")
+        view?.hideProgress()
       }
       view?.hideProgress()
     }
-
-    //TODO neue Liste von Default Sites dem User zuordnen / kopieren
-
   }
 }
